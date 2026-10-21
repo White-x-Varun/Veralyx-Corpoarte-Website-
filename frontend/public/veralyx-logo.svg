@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 190" role="img" aria-labelledby="title description">
+  <title id="title">Veralyx</title>
+  <desc id="description">Authentic Strategies, Brilliant Outcomes</desc>
+  <g fill="#fff">
+    <path d="M250 3c6 18 13 25 32 32-19 7-26 14-32 32-6-18-13-25-32-32 19-7 26-14 32-32Z"/>
+    <text x="250" y="122" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="51" font-weight="700" letter-spacing="2" textLength="300" lengthAdjust="spacingAndGlyphs">VERALYX</text>
+    <text x="250" y="151" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" letter-spacing=".5" textLength="260" lengthAdjust="spacingAndGlyphs">AUTHENTIC STRATEGIES,</text>
+    <text x="250" y="174" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" letter-spacing=".5" textLength="250" lengthAdjust="spacingAndGlyphs">BRILLIANT OUTCOMES</text>
+  </g>
+</svg>

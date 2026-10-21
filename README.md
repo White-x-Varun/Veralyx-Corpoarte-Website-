@@ -5,8 +5,8 @@ Corporate website for **VERALYX** — public marketing pages plus an admin CMS.
 | Layer | Stack | Host (intended) |
 | --- | --- | --- |
 | Frontend | React 18, Vite, Tailwind | Cloudflare Pages |
-| Backend | Express, MongoDB | Render (or any Node 20+ host) |
-| Storage | Local disk (dev) / Cloudflare R2 (prod) | |
+| Backend | Express, MongoDB Atlas | Cloudflare Workers |
+| Storage | Local disk (dev) / Cloudflare R2 (prod) | Cloudflare R2 |
 | Auth | HttpOnly session cookie, bcrypt, CSRF | Admin only |
 
 There are **no public user accounts**. The only login is `/admin/login` for site operators.
@@ -21,9 +21,9 @@ There are **no public user accounts**. The only login is `/admin/login` for site
 
 ```bash
 npm install
-copy backend\.env.example backend\.env
-copy frontend\.env.example frontend\.env
 ```
+
+Copy `.env.example` to `backend/.env` and `frontend/.env` and set your local MongoDB and admin seed values.
 
 Edit `backend/.env`: set `MONGODB_URI`, `SESSION_SECRET` (≥32 characters), and seed credentials.
 
@@ -47,6 +47,8 @@ Change the seeded admin password after first login.
 | `npm run test:e2e` | Playwright smoke tests |
 | `npm run lint` | ESLint |
 | `npm run seed:admin` | Create the first admin user |
+| `npm run worker:dev` | Run the API Worker locally with Wrangler |
+| `npm run worker:deploy` | Deploy the API Worker to Cloudflare |
 
 ## Content policy
 

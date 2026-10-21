@@ -1,73 +1,84 @@
-# Deployment
+# Cloudflare deployment
 
-Frontend is a static Vite build (Cloudflare Pages). The Express API is **not** Cloudflare Workers-compatible; run it on Render, Fly, Railway, or similar.
+This project uses Cloudflare Pages for the React site, a Cloudflare Worker for the Express API, MongoDB Atlas for application data, and Cloudflare R2 for uploaded resumes. A Pages Function forwards `/api/*` requests to the API Worker so the browser uses one site origin and the admin cookies continue to work.
 
-## Cloudflare Pages (frontend)
+## Before deployment
 
-This project is a monorepo. Cloudflare Pages hosts the static Vite frontend; the Express API and MongoDB connection must run on a Node host such as Render or Railway. Deploying only `frontend/dist` does not deploy the API or make the admin CMS work.
+- Push the repository to GitHub.
+- Keep the existing Pages project Git-connected. Pages Functions are part of this deployment; dashboard drag-and-drop does not compile the `functions/` directory.
+- Create the MongoDB Atlas database user and keep its connection string private. Use a database name such as `veralyx` in the URI: `mongodb+srv://<user>:<password>@<cluster-host>/veralyx`.
+- Create an R2 bucket named `veralyx-resumes`. The Worker config binds it as `RESUME_BUCKET`.
 
-### Direct upload from this workspace
+Atlas only accepts connections from addresses in its project IP access list. If the Worker cannot connect, check this list. A broad `0.0.0.0/0` rule allows connections from anywhere; avoid it when possible. If you need it for a Worker without a fixed egress IP, use a dedicated database user with access only to the `veralyx` database and a strong password.
 
-Use this route when the project is not connected to GitHub or GitLab. Cloudflare's Direct Upload project type cannot later be converted to Git integration; create a Git-integrated project instead if automatic deployments from pushes are required.
+## 1. Seed the first admin account
 
-1. Get the public API URL from the deployed backend, including `/api/v1`.
-2. Sign Wrangler in to Cloudflare and create the Pages project once:
+Create `backend/.env` locally. This file is ignored by Git. Add:
 
-   ```powershell
-   npx --yes wrangler@4 login
-   npx --yes wrangler@4 pages project create veralyx
-   ```
+```dotenv
+MONGODB_URI=mongodb+srv://<user>:<password>@<cluster-host>/veralyx
+ADMIN_SEED_EMAIL=you@example.com
+ADMIN_SEED_PASSWORD=<a unique password with at least 12 characters>
+ADMIN_SEED_NAME=Site Administrator
+```
 
-3. From the repository root, build and deploy with the helper script:
+From the repository root, run:
 
-   ```powershell
-   .\scripts\deploy-cloudflare.ps1 `
-     -ApiBaseUrl 'https://<api-host>/api/v1' `
-     -SiteUrl 'https://veralyx.pages.dev'
-   ```
+```powershell
+npm install
+npm run seed:admin -w backend
+```
 
-   The helper builds `frontend/dist` with the provided public URLs and uploads it to the `veralyx` Pages project. Use `-ProjectName` if you chose another Pages project name. These values are embedded in the static JavaScript at build time. Do not use local `.env` values, and do not put secrets in `VITE_*` variables.
+The script creates the first admin and initial site settings. Keep the admin password private. If the admin already exists, the script leaves its password unchanged.
 
-To upload through the dashboard instead, open **Workers & Pages → Create application → Get started → Drag and drop your files**, then upload `frontend/dist` after building it with the same `VITE_API_BASE_URL` and `VITE_SITE_URL` values.
+## 2. Deploy the API Worker
 
-For automatic Git deployments, connect the repository through Cloudflare Pages, set the repository root to `/`, the build command to `npm ci && npm run build -w frontend`, and the output directory to `frontend/dist`. Set `VITE_API_BASE_URL` and `VITE_SITE_URL` as build environment variables in the Pages project. The Git integration requires the repository to be pushed to a supported Git provider first.
+The Worker is configured in `backend/wrangler.jsonc` and is named `veralyx-api`. Deploy it through Cloudflare Workers Builds or from the repository root:
 
-After the first deployment, set the backend's `CLIENT_ORIGIN` to the exact Pages site URL. If the API and site use different registrable domains (for example, `pages.dev` and `onrender.com`), set `COOKIE_SAME_SITE=none` with `COOKIE_SECURE=true`. For a custom domain, using an API subdomain under the same domain keeps the site and API same-site and allows `COOKIE_SAME_SITE=lax`.
+```powershell
+npm run worker:deploy
+```
 
-### Environment
+For Git deployment, create/connect a Worker named `veralyx-api`, select this repository and production branch, use repository root `/`, set the deploy command to `npm run worker:deploy`, and keep the Wrangler config in the repository. Workers Builds can use the Wrangler file and package script to deploy on each push.
 
-#### Frontend (Cloudflare Pages)
+In the Worker’s **Settings → Variables and Secrets**, add:
 
-- Build command: `npm ci && npm run build -w frontend` (or build from `frontend/` with workspace deps installed)
-- Output directory: `frontend/dist`
-- `VITE_API_BASE_URL` — public API origin including `/api/v1`
-- `VITE_SITE_URL` — canonical site URL (no trailing slash)
+| Name | Type | Value |
+| --- | --- | --- |
+| `MONGODB_URI` | Secret | Atlas URI for the `veralyx` database |
+| `SESSION_SECRET` | Secret | Random private value, at least 32 characters |
+| `CLIENT_ORIGIN` | Variable | Exact Pages site origin, such as `https://your-site.pages.dev` |
 
-SPA fallback: `frontend/public/_redirects` and `_routes.json` are already present.
+The Wrangler file already sets production cookies and the `RESUME_BUCKET` binding. Do not put database passwords or the session secret in `wrangler.jsonc`, GitHub, or `VITE_*` variables.
 
-#### Backend (Node host)
+## 3. Connect Pages to the Worker
 
-Required:
+In the Pages project, open **Settings → Bindings → Add → Service binding**:
 
-- `NODE_ENV=production`
-- `PORT` (platform-provided)
-- `MONGODB_URI`
-- `CLIENT_ORIGIN` — exact frontend origin(s), comma-separated
-- `SESSION_SECRET` — at least 32 characters
-- `COOKIE_SECURE=true` (HTTPS)
-- `COOKIE_SAME_SITE=lax` (or `none` only if API and site are on different sites **and** cookies are Secure)
+- Variable name: `VERALYX_API`
+- Service: `veralyx-api`
 
-Storage:
+Save and redeploy Pages so the binding is available to `frontend/functions/api/[[path]].js`.
 
-- Dev: `STORAGE_PROVIDER=local`
-- Prod: `STORAGE_PROVIDER=r2` plus `R2_*` keys from `.env.example`
+Keep the Pages project root directory as `frontend`, build command as `npm run build`, and output directory as `dist`. Set these Pages build variables:
 
-Seed admin once, then rotate the password. Do not leave `ADMIN_SEED_PASSWORD` in production env after first use.
+| Name | Value |
+| --- | --- |
+| `VITE_API_BASE_URL` | `https://your-site.pages.dev/api/v1` |
+| `VITE_SITE_URL` | `https://your-site.pages.dev` |
 
-## CORS and cookies
+Replace `your-site.pages.dev` with the exact production Pages URL. These values are public URLs, not secrets. Redeploy Pages after changing them.
 
-The API sets credentials cookies. `CLIENT_ORIGIN` must match the browser origin exactly. Do not use `*` with credentials.
+## 4. Check the deployment
 
-## Health check
+Open `https://your-site.pages.dev/api/v1/health`. The response should report a healthy API/database connection. Then check the public site, submit a contact form, sign in at `/admin/login`, and upload a sample PDF to confirm R2 storage.
 
-`GET /api/v1/health`
+## Local Worker development
+
+Create `backend/.dev.vars` with `MONGODB_URI`, `SESSION_SECRET`, and `CLIENT_ORIGIN`, then run `npm run worker:dev` from the repository root. Do not commit `.dev.vars` or `backend/.env`.
+
+## Notes
+
+- Cloudflare supports Express on Workers through `httpServerHandler`; Node.js compatibility is required. This Worker uses a current compatibility date and Mongoose 9. [Express on Workers](https://developers.cloudflare.com/workers/tutorials/deploy-an-express-app/) · [MongoDB on Workers](https://developers.cloudflare.com/workers/databases/third-party-integrations/mongodb/)
+- MongoDB connections from Workers can have additional connection latency. Cloudflare recommends a Durable Object to persist connections for higher-traffic or latency-sensitive use cases. [MongoDB connection guidance](https://developers.cloudflare.com/workers/tutorials/connect-to-mongodb-atlas/)
+- Pages Functions support service bindings to call a Worker. [Pages bindings](https://developers.cloudflare.com/pages/functions/bindings/)

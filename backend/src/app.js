@@ -14,7 +14,7 @@ import authRoutes from './routes/auth.js';
 import publicRoutes from './routes/public.js';
 import adminRoutes from './routes/admin.js';
 
-export function createApp() {
+export function createApp({ apiMiddleware = [] } = {}) {
   const app = express();
 
   app.set('trust proxy', 1);
@@ -43,6 +43,9 @@ export function createApp() {
   }
 
   app.use('/api', globalLimiter);
+  for (const middleware of apiMiddleware) {
+    app.use('/api/v1', middleware);
+  }
   app.use('/api', csrfProtection);
 
   app.get('/api/v1/health', health);

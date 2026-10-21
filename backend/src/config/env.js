@@ -2,9 +2,12 @@ import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const isCloudflareWorker = process.env.VERALYX_RUNTIME === 'cloudflare-worker';
 
-dotenv.config({ path: path.resolve(__dirname, '../../.env') });
+if (!isCloudflareWorker) {
+  const __dirname = path.dirname(fileURLToPath(import.meta.url));
+  dotenv.config({ path: path.resolve(__dirname, '../../.env') });
+}
 
 function requireEnv(name, fallback) {
   const value = process.env[name] ?? fallback;
@@ -32,10 +35,20 @@ function intEnv(name, fallback) {
 
 const env = {
   nodeEnv: process.env.NODE_ENV || 'development',
+  isCloudflareWorker,
   port: intEnv('PORT', 5000),
-  mongodbUri: requireEnv('MONGODB_URI', 'mongodb://127.0.0.1:27017/veralyx'),
-  clientOrigin: requireEnv('CLIENT_ORIGIN', 'http://localhost:5173'),
-  sessionSecret: requireEnv('SESSION_SECRET', 'dev-secret-change-in-production-min-32-chars'),
+  mongodbUri: requireEnv(
+    'MONGODB_URI',
+    process.env.NODE_ENV === 'production' ? undefined : 'mongodb://127.0.0.1:27017/veralyx',
+  ),
+  clientOrigin: requireEnv(
+    'CLIENT_ORIGIN',
+    process.env.NODE_ENV === 'production' ? undefined : 'http://localhost:5173',
+  ),
+  sessionSecret: requireEnv(
+    'SESSION_SECRET',
+    process.env.NODE_ENV === 'production' ? undefined : 'dev-secret-change-in-production-min-32-chars',
+  ),
   cookieSecure: boolEnv('COOKIE_SECURE', false),
   cookieSameSite: process.env.COOKIE_SAME_SITE || 'lax',
   csrfEnabled: boolEnv('CSRF_ENABLED', true),

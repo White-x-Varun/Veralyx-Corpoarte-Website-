@@ -4,7 +4,7 @@
 
 - **Monorepo**: `frontend/` (React + Vite), `backend/` (Express + MongoDB), `e2e/` (Playwright)
 - **Frontend host**: Cloudflare Pages
-- **Backend host**: Render (or any Node.js host) — Express is not Workers-compatible without a rewrite
+- **Backend host**: Cloudflare Workers — Express runs through `httpServerHandler` with Node.js compatibility
 - **Database**: MongoDB Atlas (local/memory-server for tests)
 - **Storage**: Local disk (dev) / Cloudflare R2 (prod) via storage abstraction
 - **Auth**: HttpOnly cookie sessions + bcrypt + CSRF for mutating admin requests
@@ -20,7 +20,8 @@
 - [x] API integration
 - [x] SEO, security, deployment docs
 - [x] Tests (unit, integration, e2e smoke)
-- [ ] Install, run, verify, fix (local MongoDB + env)
+- [ ] Configure production Cloudflare bindings, secrets, and Pages service binding
+- [ ] Run a live deployment check with Atlas and R2 credentials
 
 ## Placeholders
 

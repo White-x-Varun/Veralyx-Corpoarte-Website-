@@ -218,6 +218,7 @@ export const downloadResume = asyncHandler(async (req, res) => {
   const application = await Application.findById(req.params.id);
   if (!application) throw ApiError.notFound('Application not found');
   const buffer = await getObject(application.resumeKey);
+  if (!buffer) throw ApiError.notFound('Resume file not found');
   res.setHeader('Content-Type', 'application/pdf');
   res.setHeader(
     'Content-Disposition',

@@ -50,4 +50,8 @@ finally {
   $env:VITE_API_BASE_URL = $previousApiBaseUrl
   $env:VITE_SITE_URL = $previousSiteUrl
   Pop-Location
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 87302d045bec07cfb2e2996b09d26b2a88dcb31e

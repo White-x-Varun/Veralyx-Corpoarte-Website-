@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 node_modules/
 dist/
 build/
@@ -27,3 +28,34 @@ blob-report/
 .idea/
 .vscode/
 !.vscode/extensions.json
+=======
+node_modules/
+dist/
+build/
+coverage/
+.env
+.env.local
+.env.*.local
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+uploads/
+.uploads/
+backend/uploads/
+frontend/dist/
+playwright-report/
+test-results/
+blob-report/
+.vite/
+*.tsbuildinfo
+.wrangler/
+.dev.vars
+.mongo-memory/
+.cache/
+.nyc_output/
+*.pem
+.idea/
+.vscode/
+!.vscode/extensions.json
+>>>>>>> 87302d045bec07cfb2e2996b09d26b2a88dcb31e

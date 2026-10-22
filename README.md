@@ -6,7 +6,7 @@ Corporate website for **VERALYX** — public marketing pages plus an admin CMS.
 | --- | --- | --- |
 | Frontend | React 18, Vite, Tailwind | Cloudflare Pages |
 | Backend | Express, MongoDB Atlas | Cloudflare Workers |
-| Storage | Local disk (dev) / Cloudflare R2 (prod) | Cloudflare R2 |
+| Storage | Local disk (dev) / MongoDB Atlas (Cloudflare Worker) | MongoDB Atlas |
 | Auth | HttpOnly session cookie, bcrypt, CSRF | Admin only |
 
 There are **no public user accounts**. The only login is `/admin/login` for site operators.

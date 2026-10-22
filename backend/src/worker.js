@@ -25,7 +25,6 @@ for (const name of runtimeVariableNames) {
 }
 
 process.env.VERALYX_RUNTIME = 'cloudflare-worker';
-globalThis.__VERALYX_RESUME_BUCKET = workerEnv.RESUME_BUCKET;
 
 const [{ createApp }, { connectDB }] = await Promise.all([
   import('./app.js'),

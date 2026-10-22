@@ -1,10 +1,13 @@
 import { v4 as uuidv4 } from 'uuid';
 import env from '../config/env.js';
 import * as local from './localStorage.js';
+import * as mongodb from './mongodbStorage.js';
 import * as r2 from './r2Storage.js';
 
 function provider() {
-  return env.storageProvider === 'r2' ? r2 : local;
+  if (env.storageProvider === 'r2') return r2;
+  if (env.storageProvider === 'mongodb') return mongodb;
+  return local;
 }
 
 export function createResumeKey() {

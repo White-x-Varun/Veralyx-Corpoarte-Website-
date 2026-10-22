@@ -6,7 +6,7 @@
 - **Frontend host**: Cloudflare Pages
 - **Backend host**: Cloudflare Workers — Express runs through `httpServerHandler` with Node.js compatibility
 - **Database**: MongoDB Atlas (local/memory-server for tests)
-- **Storage**: Local disk (dev) / Cloudflare R2 (prod) via storage abstraction
+- **Storage**: Local disk (dev) / MongoDB Atlas (Cloudflare Worker) via storage abstraction
 - **Auth**: HttpOnly cookie sessions + bcrypt + CSRF for mutating admin requests
 - **Accounts**: Admin operators only — no public / Pro customer accounts
 
@@ -21,7 +21,7 @@
 - [x] SEO, security, deployment docs
 - [x] Tests (unit, integration, e2e smoke)
 - [ ] Configure production Cloudflare bindings, secrets, and Pages service binding
-- [ ] Run a live deployment check with Atlas and R2 credentials
+- [ ] Run a live deployment check with Atlas credentials
 
 ## Placeholders
 

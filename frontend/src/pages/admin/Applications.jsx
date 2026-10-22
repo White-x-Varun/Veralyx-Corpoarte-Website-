@@ -111,10 +111,10 @@ export default function Applications() {
             <div><dt className="text-muted">Email</dt><dd className="text-white">{selected.email}</dd></div>
             {selected.phone && <div><dt className="text-muted">Phone</dt><dd className="text-white">{selected.phone}</dd></div>}
             <div><dt className="text-muted">Cover letter</dt><dd className="mt-1 whitespace-pre-wrap text-slate-300">{selected.coverLetter}</dd></div>
-            {selected.resumeUrl && (
+            {selected.resumeKey && (
               <div>
                 <dt className="text-muted">Resume</dt>
-                <dd><a href={selected.resumeUrl} target="_blank" rel="noopener noreferrer" className="text-brand-light hover:underline">Download PDF</a></dd>
+                <dd><a href={endpoints.adminApplicationResume(selected._id || selected.id)} className="text-brand-light hover:underline">Download PDF</a></dd>
               </div>
             )}
           </dl>

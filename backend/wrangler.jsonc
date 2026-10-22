@@ -9,18 +9,12 @@
     "COOKIE_SECURE": "true",
     "COOKIE_SAME_SITE": "lax",
     "CSRF_ENABLED": "true",
-    "STORAGE_PROVIDER": "r2",
+    "STORAGE_PROVIDER": "mongodb",
     "UPLOAD_MAX_BYTES": "5242880",
     "RATE_LIMIT_WINDOW_MS": "900000",
     "RATE_LIMIT_MAX": "100",
     "LOGIN_RATE_LIMIT_MAX": "10",
     "CONTACT_RATE_LIMIT_MAX": "5",
     "APPLY_RATE_LIMIT_MAX": "10"
-  },
-  "r2_buckets": [
-    {
-      "binding": "RESUME_BUCKET",
-      "bucket_name": "veralyx-resumes"
-    }
-  ]
+  }
 }

@@ -11,9 +11,15 @@ export const BRAND = {
   },
   tagline: 'Digital marketing consulting, business consulting, and life coaching.',
   description:
+<<<<<<< HEAD
     'Veralyx offers digital marketing consulting and business consulting for organizations, and life coaching for individuals.',
   heroTitle: 'Build with clarity.',
   heroSubtitle: 'Consulting for businesses. Coaching for individuals.',
+=======
+    'Veralyx offers digital marketing consulting and business consulting to organizations, alongside life coaching for individuals.',
+  heroTitle: 'Marketing is an investment.',
+  heroSubtitle: 'Strategy turns it into commercial value.',
+>>>>>>> 43c96cae5a41dff2359aa9aa24c4da4db4ccc17d
   mission:
     'Help organizations make focused marketing and business decisions, and support individuals as they work toward meaningful personal goals.',
   vision:
@@ -55,7 +61,11 @@ export const EXPERTISE = [
   'Paid Media',
   'CRO',
   'Brand Positioning',
+<<<<<<< HEAD
   'Marketing and sales in sync',
+=======
+  'Marketing & Sales Alignment',
+>>>>>>> 43c96cae5a41dff2359aa9aa24c4da4db4ccc17d
 ];
 
 export const SERVICES = [
@@ -116,3 +126,13 @@ export function resolveEmail(settings) {
   return isPlaceholderValue(email) ? BRAND.email : email;
 }
 
+<<<<<<< HEAD
+=======
+export function careerMailto() {
+  const subject = encodeURIComponent('Career or freelance enquiry — Veralyx');
+  const body = encodeURIComponent(
+    'Hello Veralyx,\n\nI would like to enquire about future career, internship, or freelance opportunities.\n\nA short introduction:\n\n',
+  );
+  return `mailto:${BRAND.email}?subject=${subject}&body=${body}`;
+}
+>>>>>>> 43c96cae5a41dff2359aa9aa24c4da4db4ccc17d

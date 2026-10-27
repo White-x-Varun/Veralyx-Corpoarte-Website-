@@ -35,6 +35,10 @@ describe('Home', () => {
     ).toBeInTheDocument();
     expect(screen.getByText(/strategy turns it into commercial value/i)).toBeInTheDocument();
     expect(screen.getByText(/revenue contribution/i)).toBeInTheDocument();
+<<<<<<< HEAD
     expect(screen.getAllByText(/marketing and sales in sync/i).length).toBeGreaterThan(0);
+=======
+    expect(screen.getAllByText(/marketing & sales alignment/i).length).toBeGreaterThan(0);
+>>>>>>> 43c96cae5a41dff2359aa9aa24c4da4db4ccc17d
   });
 });

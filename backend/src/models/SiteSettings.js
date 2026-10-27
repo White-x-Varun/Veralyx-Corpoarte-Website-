@@ -104,8 +104,13 @@ const DEFAULT_SERVICES = [
     icon: 'sparkles',
   },
   {
+<<<<<<< HEAD
     title: 'Marketing and sales in sync',
     description: 'Bring both teams together around shared priorities, clear handoffs, and a smoother path to customer acquisition.',
+=======
+    title: 'Marketing & Sales Alignment',
+    description: 'Connect marketing activity with how teams qualify, follow up, and close opportunities.',
+>>>>>>> 43c96cae5a41dff2359aa9aa24c4da4db4ccc17d
     icon: 'megaphone',
   },
 ];

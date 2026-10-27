@@ -20,8 +20,13 @@ const VALUES = [
   },
   {
     icon: Users,
+<<<<<<< HEAD
     title: 'Marketing and sales in sync',
     description: 'Bring both teams together around shared priorities, clear handoffs, and a smoother path to customer acquisition.',
+=======
+    title: 'Marketing & sales alignment',
+    description: 'Align marketing and sales around shared priorities, clear handoffs, and consistent follow-up.',
+>>>>>>> 43c96cae5a41dff2359aa9aa24c4da4db4ccc17d
   },
   {
     icon: Award,
@@ -44,7 +49,11 @@ export default function About() {
       <PageHero
         eyebrow={BRAND.name}
         title={`About ${BRAND.name}`}
+<<<<<<< HEAD
         subtitle={BRAND.heroSubtitle}
+=======
+        subtitle="Marketing is an investment. Strategy turns it into commercial value."
+>>>>>>> 43c96cae5a41dff2359aa9aa24c4da4db4ccc17d
       />
 
       <section className="section-padding">

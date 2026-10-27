@@ -122,7 +122,11 @@ export default function Home() {
               </h1>
               <p className="hero-lede">{BRAND.heroSubtitle}</p>
               <p className="hero-description">
+<<<<<<< HEAD
                 Veralyx offers digital marketing consulting and business consulting for organizations, and life coaching for individuals.
+=======
+                Veralyx offers digital marketing consulting and business consulting to organizations, alongside life coaching for individuals.
+>>>>>>> 43c96cae5a41dff2359aa9aa24c4da4db4ccc17d
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Link

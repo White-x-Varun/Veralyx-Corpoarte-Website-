@@ -1,7 +1,7 @@
 export const BRAND = {
   name: 'Veralyx',
   legalEntity: 'Vibgyor Horizons Private Limited',
-  legalLine: 'Veralyx is a brand of, and is operated by, Vibgyor Horizons Private Limited.',
+  legalLine: 'Veralyx is a brand of and is operated by Vibgyor Horizons Private Limited.',
   email: 'veralyx91@gmail.com',
   whatsappUrl: 'https://lnkd.in/gAD3wmTS',
   socialLinks: {

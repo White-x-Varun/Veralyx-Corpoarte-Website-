@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, BarChart3, Handshake, Megaphone, MousePointerClick, Search, Target } from 'lucide-react';
+import { ArrowRight, BarChart3, CircleDot, Handshake, Megaphone, MousePointerClick, Search, Target } from 'lucide-react';
 import Seo from '@/components/Seo';
 import { useMotionProps } from '@/hooks/useMotionProps';
 import { Card, CardContent } from '@/components/ui/Card';
@@ -15,6 +15,7 @@ const ICON_MAP = {
   search: Search,
   cursor: MousePointerClick,
   handshake: Handshake,
+  circle: CircleDot,
 };
 
 export default function Services() {
@@ -24,22 +25,22 @@ export default function Services() {
     <>
       <Seo
         title="Services"
-        description={`${BRAND.name} builds focused Go-to-Market, demand generation, and customer acquisition systems.`}
+        description={BRAND.description}
         path="/services"
       />
 
       <PageHero
         eyebrow={BRAND.name}
-        title="Build a growth system that moves the business forward"
-        subtitle="Focused Go-to-Market, demand generation, and customer acquisition systems for founders and leadership teams."
+        title="Consulting for business. Coaching for life."
+        subtitle="Digital marketing consulting and business consulting for organizations, alongside life coaching for individuals."
       />
 
       <section className="section-padding bg-surface/20">
         <div className="container-app">
           <div className="mb-10 max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-light">Our capabilities</p>
-            <h2 className="mt-3 font-display text-3xl font-bold text-white">A connected path from market to customer</h2>
-            <p className="mt-3 leading-relaxed text-muted">Each engagement is shaped around your business goals, customer journey, and the commercial outcomes you need.</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-light">What Veralyx offers</p>
+            <h2 className="mt-3 font-display text-3xl font-bold text-white">Three focused ways to move forward</h2>
+            <p className="mt-3 leading-relaxed text-muted">Business engagements and coaching are scoped around the goals agreed with each client.</p>
           </div>
           <div className="grid gap-6 md:grid-cols-3">
             {SERVICES.map((service) => {
@@ -74,8 +75,8 @@ export default function Services() {
       </section>
 
       <CtaBand
-        title="Turn marketing investment into commercial value"
-        body="Connect with Veralyx to discuss qualified opportunities, efficient customer acquisition, and stronger commercial performance."
+        title="Find the right next step"
+        body="Talk with Veralyx about digital marketing consulting, business consulting, or life coaching."
       />
     </>
   );

@@ -9,15 +9,15 @@ export const BRAND = {
     facebook: 'https://facebook.com/share/1A7RsE9BcE',
     youtube: 'https://m.youtube.com/@Veralyx91',
   },
-  tagline: 'Go-to-Market strategy, demand generation, and customer acquisition.',
+  tagline: 'Digital marketing consulting, business consulting, and life coaching.',
   description:
-    'Veralyx partners with founders and leadership teams to build focused Go-to-Market, demand generation, and customer acquisition systems that support measurable business outcomes.',
+    'Veralyx offers digital marketing consulting and business consulting to organizations, alongside life coaching for individuals.',
   heroTitle: 'Marketing is an investment.',
   heroSubtitle: 'Strategy turns it into commercial value.',
   mission:
-    'Build focused Go-to-Market, demand generation, and customer acquisition systems that turn marketing investment into measurable commercial value.',
+    'Help organizations make focused marketing and business decisions, and support individuals as they work toward meaningful personal goals.',
   vision:
-    'Help founders and leadership teams make marketing a disciplined driver of qualified opportunities and efficient growth.',
+    'Bring clearer thinking to business growth and personal progress through consulting and coaching.',
 };
 
 export const SOCIAL_PLATFORMS = [
@@ -29,12 +29,12 @@ export const SOCIAL_PLATFORMS = [
 ];
 
 export const FOUNDER_STATS = [
-  { value: '9+', label: 'Years of experience' },
-  { value: '1,100+', label: 'Clients' },
-  { value: '12+', label: 'Industries' },
-  { value: '₹7+ Cr', label: 'Revenue contribution' },
-  { value: '₹5L+', label: 'Monthly ad budgets optimized' },
-  { value: '9K+', label: 'LinkedIn & YouTube audience' },
+  { value: '9+', label: 'Founder’s years of experience' },
+  { value: '1,100+', label: 'Clients served by the founder' },
+  { value: '12+', label: 'Industries worked in by the founder' },
+  { value: '₹7+ Cr', label: 'Revenue contribution from the founder’s work' },
+  { value: '₹5L+', label: 'Monthly ad budgets optimized by the founder' },
+  { value: '9K+', label: 'Founder’s LinkedIn and YouTube audience' },
 ];
 
 export const INDUSTRIES = [
@@ -60,110 +60,43 @@ export const EXPERTISE = [
 
 export const SERVICES = [
   {
-    slug: 'go-to-market-strategy',
-    icon: 'target',
-    title: 'Go-to-Market Strategy',
-    description: 'Focused market, audience, positioning, and channel choices tied to business goals.',
-    content:
-      'Veralyx partners with founders and leadership teams to shape focused Go-to-Market plans. We align market priorities, positioning, channels, and measurement around the commercial outcomes the business needs.',
-    features: [
-      'Market and audience prioritization',
-      'Positioning, messaging, and channel strategy',
-      'Commercial goals and measurement',
-    ],
-  },
-  {
-    slug: 'demand-generation',
-    icon: 'megaphone',
-    title: 'Demand Generation',
-    description: 'Build campaigns and journeys that create qualified opportunities.',
-    content:
-      'We build demand generation systems that connect the right audiences with relevant offers and clear next steps. Campaigns focus on qualified opportunities and visible performance.',
-    features: [
-      'Audience and offer planning',
-      'Lead generation campaigns',
-      'Opportunity quality and funnel measurement',
-    ],
-  },
-  {
-    slug: 'performance-marketing',
+    slug: 'digital-marketing-consulting',
     icon: 'chart',
-    title: 'Performance Marketing',
-    description: 'Optimize paid media investment around efficient customer acquisition.',
+    title: 'Digital Marketing Consulting',
+    description: 'Practical marketing strategy and channel guidance shaped around business goals.',
     content:
-      'Veralyx plans and optimizes performance marketing across paid channels, with attention to acquisition efficiency, campaign quality, and the business outcomes behind the numbers.',
+      'Veralyx advises organizations on digital marketing priorities, Go-to-Market planning, demand generation, and customer acquisition. The scope is agreed around each client’s goals and resources.',
     features: [
-      'Paid media planning and optimization',
-      'Acquisition cost and conversion analysis',
-      'Campaign testing and reporting',
+      'Go-to-Market planning',
+      'Demand generation and customer acquisition',
+      'SEO, paid media, positioning, and conversion guidance',
     ],
   },
   {
-    slug: 'seo-sem-paid-media',
-    icon: 'search',
-    title: 'SEO, SEM & Paid Media',
-    description: 'Improve discoverability and capture high-intent demand across search and paid channels.',
-    content:
-      'Search and paid media work together to help the right customers find and choose a business. We connect search intent, campaign structure, landing pages, and measurement.',
-    features: [
-      'SEO and search opportunity planning',
-      'SEM and paid media campaigns',
-      'Channel performance measurement',
-    ],
-  },
-  {
-    slug: 'cro-brand-positioning',
-    icon: 'cursor',
-    title: 'CRO & Brand Positioning',
-    description: 'Make the value clear and improve the path from interest to conversion.',
-    content:
-      'Clear positioning and a thoughtful conversion journey help marketing perform better. We improve how the offer is communicated and remove friction from key customer actions.',
-    features: [
-      'Brand and offer positioning',
-      'Landing page and funnel reviews',
-      'Conversion rate optimization',
-    ],
-  },
-  {
-    slug: 'marketing-sales-alignment',
+    slug: 'business-consulting',
     icon: 'handshake',
-    title: 'Marketing & Sales Alignment',
-    description: 'Connect marketing activity with how teams qualify, follow up, and close opportunities.',
+    title: 'Business Consulting',
+    description: 'Clarify business priorities, assess opportunities, and plan practical next steps.',
     content:
-      'Marketing and sales work best when both teams share definitions, context, and feedback. We help connect demand generation to qualification and sales follow-up so commercial opportunities move forward.',
+      'Veralyx works with founders and teams to review business priorities, consider growth opportunities, and shape clear next steps. The work is advisory and tailored to the engagement agreed with the client.',
     features: [
-      'Lead and opportunity definitions',
-      'Handoff and follow-up alignment',
-      'Shared feedback and reporting',
+      'Business goals and priority review',
+      'Growth opportunity assessment',
+      'Practical planning and decision support',
     ],
   },
-];
-
-export const INTERNSHIP_ROLES = [
-  { title: 'Graphic Design', summary: 'Visual work and campaign assets.' },
-  { title: 'B2B Sales', summary: 'Outreach and relationship support.' },
-  { title: 'B2C Sales & Business Development', summary: 'Outreach and partnership support.' },
-  { title: 'Social Media', summary: 'Content and platform presence.' },
-  { title: 'Content', summary: 'Writing and storytelling support.' },
-  { title: 'Marketing', summary: 'Campaign and positioning support.' },
-  { title: 'Operations', summary: 'Coordination and delivery support.' },
-];
-
-export const INTERNSHIP_PATH = [
   {
-    step: '01',
-    title: 'First 3 months',
-    description: 'Unpaid internship focused on learning, contribution, and fit. Terms are confirmed in writing if selected.',
-  },
-  {
-    step: '02',
-    title: 'From the 4th month',
-    description: 'Paid internship may be offered based on performance. This is not automatic.',
-  },
-  {
-    step: '03',
-    title: 'Further work',
-    description: 'Further paid work is considered only if offered in writing. Applying is not a job offer.',
+    slug: 'life-coaching',
+    icon: 'circle',
+    title: 'Life Coaching',
+    description: 'One-to-one coaching for personal clarity, goal-setting, and follow-through.',
+    content:
+      'Life coaching provides a structured space to reflect, clarify personal goals, and plan actions that fit your priorities. Coaching is non-clinical and is not therapy, mental-health treatment, or medical advice.',
+    features: [
+      'Personal goal-setting',
+      'Reflection and decision support',
+      'Accountability for agreed actions',
+    ],
   },
 ];
 
@@ -183,10 +116,10 @@ export function resolveEmail(settings) {
   return isPlaceholderValue(email) ? BRAND.email : email;
 }
 
-export function applyMailto(role) {
-  const subject = encodeURIComponent(role ? `Application — ${role}` : 'Application — Veralyx');
+export function careerMailto() {
+  const subject = encodeURIComponent('Career or freelance enquiry — Veralyx');
   const body = encodeURIComponent(
-    `Hello Veralyx,\n\nI am applying for: ${role || '[role]'}\n\nIntroduction:\n\n`,
+    'Hello Veralyx,\n\nI would like to enquire about future career, internship, or freelance opportunities.\n\nA short introduction:\n\n',
   );
   return `mailto:${BRAND.email}?subject=${subject}&body=${body}`;
 }

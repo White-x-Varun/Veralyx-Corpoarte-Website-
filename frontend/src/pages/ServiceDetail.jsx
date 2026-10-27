@@ -8,12 +8,15 @@ import { BRAND, SERVICES } from '@/content/brand';
 import PageHero from '@/components/brand/PageHero';
 
 const LEGACY_SLUGS = {
-  'digital-marketing-strategy': 'go-to-market-strategy',
-  'digital-marketing-consulting': 'go-to-market-strategy',
-  'business-consulting': 'marketing-sales-alignment',
-  'business-branding-consulting': 'cro-brand-positioning',
-  'personal-branding-leadership': 'marketing-sales-alignment',
-  'life-coaching': 'go-to-market-strategy',
+  'digital-marketing-strategy': 'digital-marketing-consulting',
+  'go-to-market-strategy': 'digital-marketing-consulting',
+  'demand-generation': 'digital-marketing-consulting',
+  'performance-marketing': 'digital-marketing-consulting',
+  'seo-sem-paid-media': 'digital-marketing-consulting',
+  'cro-brand-positioning': 'digital-marketing-consulting',
+  'marketing-sales-alignment': 'business-consulting',
+  'business-branding-consulting': 'business-consulting',
+  'personal-branding-leadership': 'business-consulting',
 };
 
 export default function ServiceDetail() {

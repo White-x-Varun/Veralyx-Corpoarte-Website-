@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { MapPin, Clock, Briefcase, ArrowRight } from 'lucide-react';
 import Seo from '@/components/Seo';
-import { useMotionProps } from '@/hooks/useMotionProps';
 import { useFetch } from '@/hooks/useFetch';
 import client from '@/api/client';
 import { endpoints } from '@/api/endpoints';
@@ -13,13 +12,10 @@ import SearchInput from '@/components/ui/SearchInput';
 import Select from '@/components/ui/Select';
 import { unwrapList } from '@/api/unwrap';
 import { useMemo, useState } from 'react';
-import { motion } from 'framer-motion';
 import PageHero from '@/components/brand/PageHero';
-import { BRAND, INTERNSHIP_PATH, INTERNSHIP_ROLES, applyMailto } from '@/content/brand';
+import { BRAND, careerMailto } from '@/content/brand';
 
 export default function Careers() {
-  const motionProps = useMotionProps();
-
   const [query, setQuery] = useState('');
   const [employmentType, setEmploymentType] = useState('');
   const [workMode, setWorkMode] = useState('');
@@ -43,90 +39,37 @@ export default function Careers() {
   return (
     <>
       <Seo
-        title="Careers"
-        description={`Internship and freelance options with ${BRAND.name}. Applying is not a job offer.`}
+        title="Career and freelance opportunities"
+        description={`View current openings or enquire about future opportunities with ${BRAND.name}.`}
         path="/careers"
       />
 
       <PageHero
         eyebrow={`${BRAND.name} · Careers`}
-        title="Internship and freelance"
-        subtitle="Internship and freelance options may be available from time to time. Applying does not guarantee a role. Any offer will be confirmed in writing."
+        title="Career and freelance opportunities"
+        subtitle="Current openings are listed below. Email a brief introduction for future internship or freelance consideration. An enquiry is not an offer; any engagement and terms will be confirmed in writing."
       >
         <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <a
-            href={applyMailto()}
+            href={careerMailto()}
             className="inline-flex h-12 items-center gap-2 rounded-lg bg-brand px-6 text-base font-medium text-white hover:bg-brand-light"
           >
-            Email an introduction
+            Send an introduction
             <ArrowRight className="h-4 w-4" />
           </a>
           <a
             href="#open-roles"
             className="inline-flex h-12 items-center rounded-lg border border-surface-border bg-surface-elevated px-6 text-base font-medium text-white hover:bg-white/5"
           >
-            Posted positions
+            Current openings
           </a>
         </div>
       </PageHero>
 
-      <section className="section-padding">
-        <div className="container-app">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="font-display text-3xl font-bold text-white">Areas you can apply for</h2>
-            <p className="mt-4 text-muted">
-              Mention the area in your email to {BRAND.email}.
-            </p>
-          </div>
-          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {INTERNSHIP_ROLES.map((role) => (
-              <motion.div key={role.title} {...motionProps}>
-                <Card className="h-full">
-                  <CardContent className="flex h-full flex-col pt-6">
-                    <h3 className="font-display text-lg font-semibold text-white">{role.title}</h3>
-                    <p className="mt-2 flex-1 text-sm text-muted">{role.summary}</p>
-                    <a
-                      href={applyMailto(role.title)}
-                      className="mt-4 text-sm font-medium text-brand-light hover:text-white"
-                    >
-                      Apply for {role.title}
-                    </a>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section-padding bg-surface/30">
-        <div className="container-app">
-          <h2 className="text-center font-display text-3xl font-bold text-white">Internship path</h2>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {INTERNSHIP_PATH.map((item) => (
-              <Card key={item.step} className="h-full bg-card-gradient">
-                <CardContent className="pt-6">
-                  <p className="font-display text-sm font-semibold text-brand-light">{item.step}</p>
-                  <h3 className="mt-2 font-display text-xl font-semibold text-white">{item.title}</h3>
-                  <p className="mt-2 text-sm text-muted">{item.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-          <p className="mx-auto mt-10 max-w-2xl text-center text-sm text-muted">
-            Send a short introduction to{' '}
-            <a className="text-brand-light hover:text-white" href={`mailto:${BRAND.email}`}>
-              {BRAND.email}
-            </a>
-            . Mention the area you are applying for. This is not a job advertisement and does not create a contract.
-          </p>
-        </div>
-      </section>
-
       <section id="open-roles" className="section-padding">
         <div className="container-app max-w-4xl">
-          <h2 className="font-display text-3xl font-bold text-white">Posted positions</h2>
-          <p className="mt-2 text-muted">Roles listed here are the only current openings, if any.</p>
+          <h2 className="font-display text-3xl font-bold text-white">Current openings</h2>
+          <p className="mt-2 text-muted">Only roles listed here are currently open.</p>
 
           {loading && (
             <div className="flex justify-center py-16">
@@ -160,7 +103,7 @@ export default function Careers() {
           {!loading && !error && filtered?.length === 0 && (
             <Card>
               <CardContent className="pt-6 text-sm text-muted">
-                No positions are listed right now. You may still send an introduction for internship or freelance consideration.
+              No openings are listed right now. You may still email a brief introduction for future internship or freelance consideration.
               </CardContent>
             </Card>
           )}

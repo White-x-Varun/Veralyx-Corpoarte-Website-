@@ -34,6 +34,7 @@ const SERVICE_ICONS = {
   search: Search,
   cursor: MousePointerClick,
   handshake: Handshake,
+  circle: CircleDot,
 };
 
 export default function Home() {
@@ -70,7 +71,7 @@ export default function Home() {
         <div className="container-app relative">
           <div className="hero-topline">
             <span><b>{BRAND.name}</b><i /> Independent growth partner</span>
-            <span className="hidden sm:inline-flex">Strategy <i /> Demand <i /> Commercial outcomes</span>
+            <span className="hidden sm:inline-flex">Digital marketing <i /> Business consulting <i /> Life coaching</span>
           </div>
 
           <div className="home-hero-layout grid items-center gap-8 py-10 lg:grid-cols-[1.08fr_0.92fr] lg:gap-8 lg:py-12">
@@ -114,14 +115,14 @@ export default function Home() {
             </motion.div>
 
             <motion.div {...motionProps} className="hero-copy order-1 lg:order-2">
-              <div className="hero-eyebrow"><span className="hero-eyebrow-dot" /> BUILT FOR THE NEXT STAGE OF GROWTH</div>
+              <div className="hero-eyebrow"><span className="hero-eyebrow-dot" /> CONSULTING FOR BUSINESS · COACHING FOR INDIVIDUALS</div>
               <h1 className="hero-headline">
                 <span>{headlineLead}</span>
                 {headlineAccent && <span className="hero-headline-accent">{headlineAccent}</span>}
               </h1>
               <p className="hero-lede">{BRAND.heroSubtitle}</p>
               <p className="hero-description">
-                We partner with founders and leadership teams to turn focused Go-to-Market strategy into qualified demand and efficient customer acquisition.
+                Veralyx offers digital marketing consulting and business consulting to organizations, alongside life coaching for individuals.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Link
@@ -139,8 +140,8 @@ export default function Home() {
               </div>
               <div className="hero-trustline">
                 <span>FOUNDER-LED</span><i />
-                <span>9+ YEARS IN THE FIELD</span><i />
-                <span>12+ INDUSTRIES</span>
+                <span>STRATEGY-LED</span><i />
+                <span>BUSINESS & PERSONAL GROWTH</span>
               </div>
             </motion.div>
           </div>
@@ -152,30 +153,17 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-y border-white/[0.06] bg-surface/65 py-9">
-        <div className="container-app">
-          <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-light">Founder experience</p>
-              <h2 className="mt-2 font-display text-2xl font-semibold text-white">Experience built across real growth challenges</h2>
-            </div>
-            <p className="max-w-sm text-sm text-muted">A decade of hands-on work across acquisition, positioning, and growth.</p>
-          </div>
-          <ImpactStats />
-        </div>
-      </section>
-
       <section className="section-padding bg-surface/20">
         <div className="container-app">
           <div className="flex flex-col items-start justify-between gap-5 sm:flex-row sm:items-end">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-light">What we do</p>
-              <h2 className="mt-3 font-display text-3xl font-bold text-white sm:text-4xl">One growth engine. Every moving part connected.</h2>
-              <p className="mt-3 max-w-xl text-muted">Six connected capabilities, built around the commercial result you need.</p>
+              <h2 className="mt-3 font-display text-3xl font-bold text-white sm:text-4xl">Consulting for businesses. Coaching for individuals.</h2>
+              <p className="mt-3 max-w-xl text-muted">Three focused offers, shaped around the goals of each engagement.</p>
             </div>
             <Link to="/services" className="link-underline text-sm font-medium">Explore all services <span aria-hidden="true">→</span></Link>
           </div>
-          <div className="service-list mt-10 grid gap-x-8 md:grid-cols-2">
+          <div className="service-list mt-10 grid gap-x-8 md:grid-cols-2 xl:grid-cols-3">
             {SERVICES.map((service, index) => {
               const Icon = SERVICE_ICONS[service.icon] || Target;
               return (
@@ -200,6 +188,19 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="border-y border-white/[0.06] bg-surface/65 py-9">
+        <div className="container-app">
+          <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-light">Founder experience</p>
+              <h2 className="mt-2 font-display text-2xl font-semibold text-white">Experience built across real growth challenges</h2>
+            </div>
+            <p className="max-w-sm text-sm text-muted">These figures describe the founder’s experience and work, not Veralyx company-wide totals.</p>
+          </div>
+          <ImpactStats />
+        </div>
+      </section>
+
       <section id="expertise" className="section-padding">
         <div className="container-app">
           <div className="grid gap-5 lg:grid-cols-[0.85fr_1.15fr]">
@@ -221,9 +222,9 @@ export default function Home() {
                 </ul>
               </div>
               <div className="rounded-2xl border border-white/[0.07] bg-surface-elevated/45 p-6 sm:p-7">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-light">Industry experience</p>
-                <h3 className="mt-3 font-display text-2xl font-semibold text-white">Across 12+ industries</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted">Experience across complex, changing markets where focus and customer understanding matter.</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-light">Founder experience</p>
+                <h3 className="mt-3 font-display text-2xl font-semibold text-white">Work across 12+ industries</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted">The founder’s experience spans sectors where customer understanding and clear positioning matter.</p>
                 <ul className="mt-5 flex flex-wrap gap-2">
                   {INDUSTRIES.map((item) => <li key={item}><Badge variant="default">{item}</Badge></li>)}
                 </ul>
@@ -326,7 +327,7 @@ export default function Home() {
 
       <CtaBand
         title={`Work with ${BRAND.name}`}
-        body="For qualified opportunities, efficient customer acquisition, and stronger commercial performance, connect with Veralyx."
+        body="Explore digital marketing consulting, business consulting, or life coaching with Veralyx."
         primaryTo="/contact"
         primaryLabel="Start a conversation"
         secondaryTo="/services"

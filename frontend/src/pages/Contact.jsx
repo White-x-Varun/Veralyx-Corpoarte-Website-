@@ -68,7 +68,7 @@ export default function Contact() {
       <PageHero
         eyebrow={BRAND.name}
         title="Contact us"
-        subtitle={`For Go-to-Market, demand generation, or customer acquisition support, email ${email} or connect on WhatsApp.`}
+        subtitle={`For digital marketing consulting, business consulting, or life coaching enquiries, email ${email} or connect on WhatsApp.`}
       />
 
       <section className="section-padding bg-surface/20">
@@ -76,8 +76,8 @@ export default function Contact() {
           <div className="space-y-6">
             <div className="mb-7">
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-light">Talk to Veralyx</p>
-              <h2 className="mt-3 font-display text-2xl font-semibold text-white">Let&apos;s discuss your growth goals</h2>
-              <p className="mt-3 text-sm leading-relaxed text-muted">Share what you&apos;re working toward. We&apos;ll help identify a useful next step.</p>
+              <h2 className="mt-3 font-display text-2xl font-semibold text-white">Let&apos;s discuss your next step</h2>
+              <p className="mt-3 text-sm leading-relaxed text-muted">Tell us whether you&apos;re exploring consulting or coaching, and we&apos;ll respond about an appropriate next step.</p>
             </div>
             <Card className="border-white/[0.07] bg-surface-elevated/45 transition hover:border-brand/30">
               <CardContent className="flex items-start gap-4 pt-6">
@@ -179,8 +179,11 @@ export default function Contact() {
                   <div className="grid gap-4 sm:grid-cols-2">
                     <Select label="Inquiry type" {...register('inquiryType')}>
                       <option value="general">General inquiry</option>
+                      <option value="digital-marketing-consulting">Digital marketing consulting</option>
+                      <option value="business-consulting">Business consulting</option>
+                      <option value="life-coaching">Life coaching</option>
                       <option value="project">Project discussion</option>
-                      <option value="internship">Internship / freelance</option>
+                      <option value="internship">Career, internship, or freelance enquiry</option>
                       <option value="partnership">Partnership</option>
                     </Select>
                   </div>

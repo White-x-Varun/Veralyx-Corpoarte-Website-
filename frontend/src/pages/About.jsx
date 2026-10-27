@@ -20,8 +20,8 @@ const VALUES = [
   },
   {
     icon: Users,
-    title: 'Joined-up growth',
-    description: 'Connect marketing and sales so demand can move toward customer acquisition.',
+    title: 'Marketing & sales alignment',
+    description: 'Align marketing and sales around shared priorities, clear handoffs, and consistent follow-up.',
   },
   {
     icon: Award,
@@ -37,7 +37,7 @@ export default function About() {
     <>
       <Seo
         title="About"
-        description={`${BRAND.name} helps founders and leadership teams build focused Go-to-Market and customer acquisition systems.`}
+        description={BRAND.description}
         path="/about"
       />
 
@@ -78,8 +78,8 @@ export default function About() {
       <section className="section-padding">
         <div className="container-app grid gap-5 lg:grid-cols-2">
           <div className="rounded-2xl border border-white/[0.07] bg-surface-elevated/35 p-7 sm:p-8">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-light">How we think</p>
-            <h2 className="font-display text-3xl font-bold text-white">Expertise</h2>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-light">Digital marketing consulting</p>
+            <h2 className="font-display text-3xl font-bold text-white">Marketing capabilities</h2>
             <ul className="mt-6 flex flex-wrap gap-2">
               {EXPERTISE.map((item) => (
                 <li key={item} className="rounded-full border border-surface-border bg-surface-elevated px-4 py-2 text-sm text-slate-200">
@@ -89,9 +89,9 @@ export default function About() {
             </ul>
           </div>
           <div className="rounded-2xl border border-white/[0.07] bg-surface-elevated/35 p-7 sm:p-8">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-light">Where we work</p>
-            <h2 className="font-display text-3xl font-bold text-white">Industry experience</h2>
-            <p className="mt-4 text-muted">Experience across 12+ industries, including:</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-light">Founder experience</p>
+            <h2 className="font-display text-3xl font-bold text-white">Experience across 12+ industries</h2>
+            <p className="mt-4 text-muted">The founder has worked across industries including:</p>
             <ul className="mt-6 flex flex-wrap gap-2">
               {INDUSTRIES.map((industry) => (
                 <li key={industry} className="rounded-full border border-surface-border bg-surface-elevated px-4 py-2 text-sm text-slate-200">
@@ -109,7 +109,7 @@ export default function About() {
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="font-display text-3xl font-bold text-white">Founder experience</h2>
             <p className="mt-4 text-muted">
-              The following figures summarize the founder&apos;s experience and contribution.
+              These figures describe the founder&apos;s experience and work, not Veralyx company-wide totals.
             </p>
           </div>
           <ImpactStats className="mt-12" />

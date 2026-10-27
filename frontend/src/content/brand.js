@@ -1,25 +1,22 @@
-export const BRAND = {
+﻿export const BRAND = {
   name: 'Veralyx',
   legalEntity: 'Vibgyor Horizons Private Limited',
   legalLine: 'Veralyx is a brand of and is operated by Vibgyor Horizons Private Limited.',
   email: 'veralyx91@gmail.com',
+  founderLinkedInUrl: 'https://www.linkedin.com/in/rahulgoel091/',
+  companyLinkedInUrl: '',
+  companyLinkedInEmbedUrl: '',
   whatsappUrl: 'https://lnkd.in/gAD3wmTS',
   socialLinks: {
-    linkedin: 'https://linkedin.com/in/rahul-director-a41959375',
+    linkedin: 'https://www.linkedin.com/in/rahulgoel091/',
     facebook: 'https://facebook.com/share/1A7RsE9BcE',
     youtube: 'https://m.youtube.com/@Veralyx91',
   },
   tagline: 'Digital marketing consulting, business consulting, and life coaching.',
   description:
-<<<<<<< HEAD
     'Veralyx offers digital marketing consulting and business consulting for organizations, and life coaching for individuals.',
   heroTitle: 'Build with clarity.',
   heroSubtitle: 'Consulting for businesses. Coaching for individuals.',
-=======
-    'Veralyx offers digital marketing consulting and business consulting to organizations, alongside life coaching for individuals.',
-  heroTitle: 'Marketing is an investment.',
-  heroSubtitle: 'Strategy turns it into commercial value.',
->>>>>>> 43c96cae5a41dff2359aa9aa24c4da4db4ccc17d
   mission:
     'Help organizations make focused marketing and business decisions, and support individuals as they work toward meaningful personal goals.',
   vision:
@@ -35,12 +32,12 @@ export const SOCIAL_PLATFORMS = [
 ];
 
 export const FOUNDER_STATS = [
-  { value: '9+', label: 'Founder’s years of experience' },
-  { value: '1,100+', label: 'Clients served by the founder' },
-  { value: '12+', label: 'Industries worked in by the founder' },
-  { value: '₹7+ Cr', label: 'Revenue contribution from the founder’s work' },
-  { value: '₹5L+', label: 'Monthly ad budgets optimized by the founder' },
-  { value: '9K+', label: 'Founder’s LinkedIn and YouTube audience' },
+  { target: 9, value: '9+', label: 'Years of experience of the founder', suffix: '+' },
+  { target: 12, value: '12+', label: 'Industries the founder has worked in', suffix: '+' },
+  { target: 1100, value: '1,100+', label: 'Clients served through the founder’s work', suffix: '+' },
+  { target: 9000, value: '9K+', label: 'Founder’s LinkedIn and YouTube audience', suffix: '+', compact: true },
+  { target: 20, value: '₹20L+', label: 'Monthly ad budgets optimized by the founder', prefix: '₹', suffix: 'L+' },
+  { target: 7, value: '₹7+ Cr', label: 'Revenue contribution from the founder’s work', prefix: '₹', suffix: '+ Cr' },
 ];
 
 export const INDUSTRIES = [
@@ -61,11 +58,7 @@ export const EXPERTISE = [
   'Paid Media',
   'CRO',
   'Brand Positioning',
-<<<<<<< HEAD
   'Marketing and sales in sync',
-=======
-  'Marketing & Sales Alignment',
->>>>>>> 43c96cae5a41dff2359aa9aa24c4da4db4ccc17d
 ];
 
 export const SERVICES = [
@@ -126,13 +119,3 @@ export function resolveEmail(settings) {
   return isPlaceholderValue(email) ? BRAND.email : email;
 }
 
-<<<<<<< HEAD
-=======
-export function careerMailto() {
-  const subject = encodeURIComponent('Career or freelance enquiry — Veralyx');
-  const body = encodeURIComponent(
-    'Hello Veralyx,\n\nI would like to enquire about future career, internship, or freelance opportunities.\n\nA short introduction:\n\n',
-  );
-  return `mailto:${BRAND.email}?subject=${subject}&body=${body}`;
-}
->>>>>>> 43c96cae5a41dff2359aa9aa24c4da4db4ccc17d

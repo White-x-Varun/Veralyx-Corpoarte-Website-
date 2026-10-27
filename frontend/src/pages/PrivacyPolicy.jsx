@@ -30,6 +30,7 @@ export default function PrivacyPolicy() {
           <p>We may collect the following types of information:</p>
           <ul>
             <li>Contact information you provide through forms (name, email, phone number)</li>
+            <li>Your email address and newsletter consent if you subscribe to Veralyx updates</li>
             <li>Application materials submitted through our careers portal</li>
             <li>Technical data such as IP address, browser type, and device information</li>
             <li>Usage data about how you interact with our website</li>
@@ -39,6 +40,7 @@ export default function PrivacyPolicy() {
           <p>We use collected information to:</p>
           <ul>
             <li>Respond to inquiries and provide requested services</li>
+            <li>Send occasional newsletter updates when you have opted in; you may request removal at any time</li>
             <li>Process job applications</li>
             <li>Improve our website and user experience</li>
             <li>Comply with legal obligations</li>

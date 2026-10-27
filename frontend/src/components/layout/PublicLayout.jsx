@@ -1,11 +1,8 @@
-import { Outlet } from 'react-router-dom';
+﻿import { Outlet } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
-<<<<<<< HEAD
 import SiteAssistant from '@/components/SiteAssistant';
-=======
->>>>>>> 43c96cae5a41dff2359aa9aa24c4da4db4ccc17d
 
 export default function PublicLayout() {
   return (
@@ -19,10 +16,7 @@ export default function PublicLayout() {
       </main>
       <Footer />
       <WhatsAppButton />
-<<<<<<< HEAD
       <SiteAssistant />
-=======
->>>>>>> 43c96cae5a41dff2359aa9aa24c4da4db4ccc17d
     </div>
   );
 }

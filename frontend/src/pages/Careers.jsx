@@ -1,9 +1,5 @@
-import { Link } from 'react-router-dom';
-<<<<<<< HEAD
+﻿import { Link } from 'react-router-dom';
 import { MapPin, Clock, Briefcase } from 'lucide-react';
-=======
-import { MapPin, Clock, Briefcase, ArrowRight } from 'lucide-react';
->>>>>>> 43c96cae5a41dff2359aa9aa24c4da4db4ccc17d
 import Seo from '@/components/Seo';
 import { useFetch } from '@/hooks/useFetch';
 import client from '@/api/client';
@@ -17,11 +13,7 @@ import Select from '@/components/ui/Select';
 import { unwrapList } from '@/api/unwrap';
 import { useMemo, useState } from 'react';
 import PageHero from '@/components/brand/PageHero';
-<<<<<<< HEAD
 import { BRAND } from '@/content/brand';
-=======
-import { BRAND, careerMailto } from '@/content/brand';
->>>>>>> 43c96cae5a41dff2359aa9aa24c4da4db4ccc17d
 
 export default function Careers() {
   const [query, setQuery] = useState('');
@@ -47,37 +39,18 @@ export default function Careers() {
   return (
     <>
       <Seo
-<<<<<<< HEAD
         title="Current openings"
         description={`View roles currently listed by ${BRAND.name}.`}
-=======
-        title="Career and freelance opportunities"
-        description={`View current openings or enquire about future opportunities with ${BRAND.name}.`}
->>>>>>> 43c96cae5a41dff2359aa9aa24c4da4db4ccc17d
         path="/careers"
       />
 
       <PageHero
         eyebrow={`${BRAND.name} · Careers`}
-<<<<<<< HEAD
         title="Current openings"
         subtitle="Explore roles currently listed by Veralyx. Applications are accepted only for openings shown below; role details and any engagement terms will be confirmed in writing."
       >
         <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
 
-=======
-        title="Career and freelance opportunities"
-        subtitle="Current openings are listed below. Email a brief introduction for future internship or freelance consideration. An enquiry is not an offer; any engagement and terms will be confirmed in writing."
-      >
-        <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <a
-            href={careerMailto()}
-            className="inline-flex h-12 items-center gap-2 rounded-lg bg-brand px-6 text-base font-medium text-white hover:bg-brand-light"
-          >
-            Send an introduction
-            <ArrowRight className="h-4 w-4" />
-          </a>
->>>>>>> 43c96cae5a41dff2359aa9aa24c4da4db4ccc17d
           <a
             href="#open-roles"
             className="inline-flex h-12 items-center rounded-lg border border-surface-border bg-surface-elevated px-6 text-base font-medium text-white hover:bg-white/5"
@@ -124,11 +97,7 @@ export default function Careers() {
           {!loading && !error && filtered?.length === 0 && (
             <Card>
               <CardContent className="pt-6 text-sm text-muted">
-<<<<<<< HEAD
                 There are no current openings. Please check back for future opportunities.
-=======
-              No openings are listed right now. You may still email a brief introduction for future internship or freelance consideration.
->>>>>>> 43c96cae5a41dff2359aa9aa24c4da4db4ccc17d
               </CardContent>
             </Card>
           )}

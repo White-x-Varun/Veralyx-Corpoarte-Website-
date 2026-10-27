@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -183,11 +183,7 @@ export default function Contact() {
                       <option value="business-consulting">Business consulting</option>
                       <option value="life-coaching">Life coaching</option>
                       <option value="project">Project discussion</option>
-<<<<<<< HEAD
                       <option value="careers">Careers or collaboration enquiry</option>
-=======
-                      <option value="internship">Career, internship, or freelance enquiry</option>
->>>>>>> 43c96cae5a41dff2359aa9aa24c4da4db4ccc17d
                       <option value="partnership">Partnership</option>
                     </Select>
                   </div>

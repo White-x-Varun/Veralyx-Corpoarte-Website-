@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+﻿import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   ArrowRight,
@@ -6,6 +6,7 @@ import {
   BarChart3,
   CircleDot,
   Handshake,
+  Linkedin,
   Megaphone,
   MousePointerClick,
   Search,
@@ -25,6 +26,11 @@ import Alert from '@/components/ui/Alert';
 import { formatDateShort, truncate } from '@/utils/format';
 import ImpactStats from '@/components/brand/ImpactStats';
 import CtaBand from '@/components/brand/CtaBand';
+import VideoFeatureCard from '@/components/brand/VideoFeatureCard';
+import FaqSection from '@/components/brand/FaqSection';
+import MarketingNews from '@/components/brand/MarketingNews';
+import NewsletterSignup from '@/components/brand/NewsletterSignup';
+import LinkedInPostSection from '@/components/brand/LinkedInPostSection';
 import { BRAND, EXPERTISE, INDUSTRIES, SERVICES } from '@/content/brand';
 
 const SERVICE_ICONS = {
@@ -70,17 +76,17 @@ export default function Home() {
         <div className="pointer-events-none absolute inset-0 horizon-glow" aria-hidden="true" />
         <div className="container-app relative">
           <div className="hero-topline">
-            <span><b>{BRAND.name}</b><i /> Independent growth partner</span>
+            <span><b>{BRAND.name}</b><i /> Independent consulting partner</span>
             <span className="hidden sm:inline-flex">Digital marketing <i /> Business consulting <i /> Life coaching</span>
           </div>
 
           <div className="home-hero-layout grid items-center gap-8 py-10 lg:grid-cols-[1.08fr_0.92fr] lg:gap-8 lg:py-12">
             <motion.div {...motionProps} className="hero-art-column order-2 lg:order-1">
               <div className="hero-art-heading">
-                <span>THE VERALYX GROWTH SYSTEM</span>
+                <span>THE VERALYX STRATEGY FRAMEWORK</span>
                 <span>01 — 03</span>
               </div>
-              <div className="growth-visual growth-visual--editorial" role="img" aria-label="An animated 3D growth model connecting strategy, demand and customer acquisition">
+              <div className="growth-visual growth-visual--editorial" role="group" aria-label="Veralyx approach: strategy, digital marketing, business consulting, life coaching, and measurable impact">
               <div className="growth-visual-grid" aria-hidden="true" />
               <div className="growth-orbit growth-orbit--one" aria-hidden="true"><span /></div>
               <div className="growth-orbit growth-orbit--two" aria-hidden="true"><span /></div>
@@ -88,11 +94,11 @@ export default function Home() {
 
               <div className="growth-prism" aria-hidden="true">
                 <div className="growth-prism-face growth-prism-face--front"><span>V</span></div>
-                <div className="growth-prism-face growth-prism-face--back" />
-                <div className="growth-prism-face growth-prism-face--right" />
-                <div className="growth-prism-face growth-prism-face--left" />
-                <div className="growth-prism-face growth-prism-face--top" />
-                <div className="growth-prism-face growth-prism-face--bottom" />
+                <div className="growth-prism-face growth-prism-face--back"><span>Strategy</span></div>
+                <div className="growth-prism-face growth-prism-face--right"><span>Digital</span></div>
+                <div className="growth-prism-face growth-prism-face--left"><span>Business</span></div>
+                <div className="growth-prism-face growth-prism-face--top"><span>Coaching</span></div>
+                <div className="growth-prism-face growth-prism-face--bottom"><span>Impact</span></div>
               </div>
 
               <div className="growth-float-card growth-float-card--top">
@@ -122,11 +128,7 @@ export default function Home() {
               </h1>
               <p className="hero-lede">{BRAND.heroSubtitle}</p>
               <p className="hero-description">
-<<<<<<< HEAD
                 Veralyx offers digital marketing consulting and business consulting for organizations, and life coaching for individuals.
-=======
-                Veralyx offers digital marketing consulting and business consulting to organizations, alongside life coaching for individuals.
->>>>>>> 43c96cae5a41dff2359aa9aa24c4da4db4ccc17d
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Link
@@ -145,7 +147,7 @@ export default function Home() {
               <div className="hero-trustline">
                 <span>FOUNDER-LED</span><i />
                 <span>STRATEGY-LED</span><i />
-                <span>BUSINESS & PERSONAL GROWTH</span>
+                <span>BUSINESS & PERSONAL PROGRESS</span>
               </div>
             </motion.div>
           </div>
@@ -154,6 +156,41 @@ export default function Home() {
             <span>VERALYX <b>—</b> AUTHENTIC STRATEGIES, BRILLIANT OUTCOMES</span>
             <span><i className="hero-status-dot" /> Independent by design. Accountable to outcomes.</span>
           </div>
+        </div>
+      </section>
+
+      <section className="section-padding" aria-labelledby="founder-journey-title">
+        <div className="container-app grid gap-8 rounded-3xl border border-white/[0.08] bg-surface-elevated/40 p-7 sm:p-10 lg:grid-cols-[1fr_auto] lg:items-center">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-light">Founder’s journey</p>
+            <h2 id="founder-journey-title" className="mt-3 font-display text-3xl font-bold text-white">Experience that informs the work</h2>
+            <p className="mt-4 max-w-3xl leading-relaxed text-muted">The experience figures shown on this page describe founder Rahul Goel’s professional journey and work with clients across industries. Veralyx brings that experience to its consulting and coaching engagements; the figures are not company-wide results or guarantees.</p>
+          </div>
+          <a href={BRAND.founderLinkedInUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/15 px-5 py-3 text-sm font-semibold text-white transition hover:border-brand/40 hover:text-brand-light">
+            <Linkedin className="h-4 w-4" aria-hidden="true" /> Rahul on LinkedIn <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+          </a>
+        </div>
+      </section>
+
+      <section className="section-padding bg-surface/20" aria-labelledby="clientele-title">
+        <div className="container-app">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-light">Veralyx clientele</p>
+          <h2 id="clientele-title" className="mt-3 font-display text-3xl font-bold text-white">Organizations connected to the founder’s experience</h2>
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted">These names reflect the founder’s prior client experience and are not presented as current Veralyx engagements or endorsements.</p>
+          <ul className="mt-7 flex flex-wrap gap-3" aria-label="Founder’s prior client experience">
+            {['ClearKaya', 'Zyrixcart', 'WerpIndia', 'CSII India'].map((name) => <li key={name} className="rounded-full border border-white/10 bg-white/[0.03] px-5 py-3 text-sm font-medium text-slate-200">{name}</li>)}
+          </ul>
+        </div>
+      </section>
+
+      <section className="section-padding" aria-labelledby="video-work-title">
+        <div className="container-app">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-light">See the work</p>
+            <h2 id="video-work-title" className="mt-3 font-display text-3xl font-bold text-white sm:text-4xl">Ideas, services, and people</h2>
+            <p className="mt-3 text-muted">A video introduction to Veralyx’s work, with an India-focused perspective, is in production.</p>
+          </div>
+          <div className="mx-auto mt-8 max-w-3xl"><VideoFeatureCard title="Veralyx in practice" description="A short introduction to our consulting and coaching approach will be added here." label="Video coming soon" /></div>
         </div>
       </section>
 
@@ -197,7 +234,7 @@ export default function Home() {
           <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-light">Founder experience</p>
-              <h2 className="mt-2 font-display text-2xl font-semibold text-white">Experience built across real growth challenges</h2>
+              <h2 className="mt-2 font-display text-2xl font-semibold text-white">Experience built across business challenges</h2>
             </div>
             <p className="max-w-sm text-sm text-muted">These figures describe the founder’s experience and work, not Veralyx company-wide totals.</p>
           </div>
@@ -300,11 +337,25 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="section-padding bg-surface/20" aria-labelledby="video-testimonials-title">
+        <div className="container-app">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-light">Client voices</p>
+            <h2 id="video-testimonials-title" className="mt-3 font-display text-3xl font-bold text-white sm:text-4xl">Video testimonials</h2>
+            <p className="mt-3 text-muted">Testimonials will be published here with permission from each speaker.</p>
+          </div>
+          <div className="mx-auto mt-8 max-w-3xl"><VideoFeatureCard title="Hear directly from clients" description="Video testimonials are being prepared. No client statements are represented until approved for publication." label="Testimonials coming soon" people /></div>
+        </div>
+      </section>
+
+      <MarketingNews />
+      <FaqSection />
+
       <section className="section-padding bg-surface/25">
         <div className="container-app">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-light">Ideas for growth</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-light">Ideas for clearer decisions</p>
               <h2 className="mt-2 font-display text-3xl font-bold text-white">Insights</h2>
             </div>
             <Link to="/blog" className="link-underline text-sm font-medium">View all <span aria-hidden="true">→</span></Link>
@@ -337,6 +388,8 @@ export default function Home() {
         secondaryTo="/services"
         secondaryLabel="Explore services"
       />
+      <NewsletterSignup />
+      <LinkedInPostSection />
     </>
   );
 }

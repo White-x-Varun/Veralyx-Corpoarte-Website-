@@ -1,0 +1,30 @@
+{
+  "name": "veralyx",
+  "version": "1.0.0",
+  "private": true,
+  "description": "VERALYX corporate website — MERN monorepo",
+  "workspaces": [
+    "frontend",
+    "backend",
+    "e2e"
+  ],
+  "scripts": {
+    "dev": "concurrently -n backend,frontend -c blue,cyan \"npm run dev -w backend\" \"npm run dev -w frontend\"",
+    "dev:backend": "npm run dev -w backend",
+    "dev:frontend": "npm run dev -w frontend",
+    "worker:dev": "npx --yes wrangler@4 dev --config backend/wrangler.jsonc",
+    "worker:deploy": "npx --yes wrangler@4 deploy --config backend/wrangler.jsonc",
+    "build": "npm run build -w frontend && npm run build -w backend",
+    "test": "npm run test -w backend && npm run test -w frontend",
+    "test:e2e": "npm run test -w e2e",
+    "lint": "npm run lint -w backend && npm run lint -w frontend",
+    "seed:admin": "npm run seed:admin -w backend",
+    "start": "npm run start -w backend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

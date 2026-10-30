@@ -1,89 +1,68 @@
-# Cloudflare deployment
+# Cloudflare deployment from your computer
 
-This project uses Cloudflare Pages for the React site, a Cloudflare Worker for the Express API, and MongoDB Atlas for application data and uploaded resumes. Resume PDFs are stored in a private MongoDB collection, so deployment does not require enabling an R2 subscription. A Pages Function forwards `/api/*` requests to the API Worker so the browser uses one site origin and the admin cookies continue to work.
+The site runs on Cloudflare Pages. Its `/api/*` Pages Function forwards requests to the `veralyx-api` Worker through the `VERALYX_API` service binding. The Worker uses MongoDB Atlas for data and resume files. Deploy both with Wrangler from this repository; the Cloudflare dashboard drag-and-drop uploader does not build Pages Functions.
 
-## Before deployment
+## One-time setup
 
-- Push the repository to GitHub.
-- Keep the Pages project Git-connected. Pages Functions are part of this deployment; dashboard drag-and-drop does not compile the `functions/` directory.
-- Create a MongoDB Atlas database user with `readWrite` access to the `veralyx` database. Keep its connection string private.
-- The Worker needs Atlas network access. Adding your computer's current IP is useful for the one-time local admin seed, but does not automatically allow Cloudflare Worker requests. If the health check reports an IP access-list error, review Atlas network access before opening it broadly.
-- Resume uploads are limited to 5 MB and use Atlas storage capacity. Remove old applications from the admin panel to delete their stored resume data.
+1. Install Node.js 20 or newer and npm. From the project folder, run `npm install`.
+2. Sign in to Cloudflare: `npx wrangler@4 login`.
+3. Create a MongoDB Atlas database/user for the `veralyx` database and allow the Worker to connect. For a quick initial launch, Atlas Network Access may require `0.0.0.0/0`; restrict it where your Atlas setup supports a safer connection path. Keep the URI private.
+4. Create the Pages project named `veralyx` in Cloudflare, or let Wrangler create it when prompted by the first Pages deploy. The matching Pages URL will typically be `https://veralyx.pages.dev`.
+5. Create `backend/.cloudflare.secrets` by copying `backend/.cloudflare.secrets.example`. Fill only `MONGODB_URI` (Atlas URI) and `SESSION_SECRET` (random value of at least 32 characters). The deploy script uploads these as encrypted Worker secrets alongside the first deployment. The file is ignored by Git. Do not put secrets in Wrangler config, `VITE_*` values, or Git.
 
-## 1. Seed the first admin account
+The repository includes `backend/.dev.vars.example` for local Worker development. Copy it to `backend/.dev.vars` and fill in real local values; `.dev.vars` is ignored by Git.
 
-If an admin account already exists in this Atlas database, skip this section. Otherwise, create `backend/.env` locally. This file is ignored by Git. Add:
+## Seed the first admin
 
-```dotenv
-MONGODB_URI=mongodb+srv://<user>:<password>@<cluster-host>/veralyx
-ADMIN_SEED_EMAIL=you@example.com
-ADMIN_SEED_PASSWORD=<a unique password with at least 12 characters>
-ADMIN_SEED_NAME=Site Administrator
-```
-
-From the repository root, run:
+If the Atlas database has no admin account yet, create `backend/.env` with `MONGODB_URI`, `ADMIN_SEED_EMAIL`, `ADMIN_SEED_PASSWORD` (at least 12 characters), and `ADMIN_SEED_NAME`. Then run:
 
 ```powershell
-npm install
 npm run seed:admin -w backend
 ```
 
-The script creates the first admin and initial site settings. If the admin already exists, the script leaves its password unchanged.
+The `.env` file is ignored. If an admin already exists, skip this step.
 
-## 2. Deploy the API Worker
+## Deploy Worker and Pages
 
-The Worker configuration is in `backend/wrangler.jsonc`. It uses MongoDB Atlas for resume storage and does not need an R2 bucket. Connect the repository through Cloudflare **Workers Builds**:
+Use the exact Pages site origin for `-SiteUrl`. The script deploys the API Worker first, builds the frontend with same-origin `/api/v1`, then deploys Pages and its Function from `frontend/`.
 
-- Git repository: this project
-- Production branch: the same branch used by the Pages project
-- Root directory: `/` (repository root)
-- Build command: leave blank
-- Deploy command: `npm run worker:deploy`
+```powershell
+.\scripts\deploy-cloudflare.ps1 -SiteUrl https://veralyx.pages.dev
+```
 
-In the Worker's **Settings → Variables and Secrets**, add these production runtime values:
+If you chose a different Pages project name, edit `frontend/wrangler.jsonc`'s `name` to match it, then use that project's `pages.dev` origin. The script configures `CLIENT_ORIGIN` on the Worker to the supplied origin. For a custom domain, use that domain consistently and update the Worker variable by deploying again.
 
-| Name | Type | Value |
-| --- | --- | --- |
-| `MONGODB_URI` | Secret | Atlas URI for the `veralyx` database |
-| `SESSION_SECRET` | Secret | Random private value, at least 32 characters |
-| `CLIENT_ORIGIN` | Variable | Exact Pages site origin, such as `https://your-site.pages.dev` |
+## Develop against the local Pages Function
 
-The Wrangler file sets the other production runtime variables. Do not put the database URI or session secret in the Wrangler file, GitHub, or `VITE_*` variables.
+Terminal 1: copy and fill `backend/.dev.vars.example` as `backend/.dev.vars`, setting `CLIENT_ORIGIN=http://localhost:8788`, then start the Worker:
 
-## 3. Connect Pages to the Worker
+```powershell
+npx wrangler@4 dev --config backend/wrangler.jsonc
+```
 
-In the **Pages project** (not the Worker), open **Settings → Bindings → Add → Service binding**:
+Terminal 2: build the frontend to use same-origin API routes and run Pages locally with its Worker service binding:
 
-- Variable name: `VERALYX_API`
-- Service: the API Worker deployed from `backend/wrangler.jsonc` (configured as `veralyx-api`)
+```powershell
+$env:VITE_API_BASE_URL = '/api/v1'
+npm run build -w frontend
+Push-Location frontend
+npx wrangler@4 pages dev dist --service VERALYX_API=veralyx-api
+Pop-Location
+```
 
-Save and redeploy Pages so the binding is available to `frontend/functions/api/[[path]].js`.
+Open the local Pages URL printed by Wrangler (usually `http://localhost:8788`).
 
-Keep the Pages project settings as:
+## Check after deployment
 
-- Root directory: `frontend`
-- Build command: `npm run build`
-- Build output directory: `dist`
-
-In **Pages → Settings → Environment variables**, set these for the production build:
-
-| Name | Value |
-| --- | --- |
-| `VITE_API_BASE_URL` | `https://your-site.pages.dev/api/v1` |
-| `VITE_SITE_URL` | `https://your-site.pages.dev` |
-
-Replace `your-site.pages.dev` with the exact production Pages URL, then redeploy Pages.
-
-## 4. Check the deployment
-
-Open `https://your-site.pages.dev/api/v1/health`. The response should report a healthy API/database connection. Then check the public site, submit a contact form, sign in at `/admin/login`, and upload a sample PDF through a published job application. The application should appear in the admin panel and its PDF should download there.
-
-## Local Worker development
-
-Create `backend/.dev.vars` with `MONGODB_URI`, `SESSION_SECRET`, and `CLIENT_ORIGIN`, then run `npm run worker:dev` from the repository root. Do not commit `.dev.vars` or `backend/.env`.
+- Open `https://<your-pages-origin>/api/v1/health`; confirm the API and database are healthy.
+- Check the public site, contact form, admin sign-in, and a small job application/resume upload.
+- Pages must have the `VERALYX_API` service binding to the deployed Worker `veralyx-api`. The binding is recorded in `frontend/wrangler.jsonc` and is used by Wrangler deployments.
 
 ## Notes
 
-- Express runs on Workers through `httpServerHandler` with Node.js compatibility. [Express on Workers](https://developers.cloudflare.com/workers/tutorials/deploy-an-express-app/)
-- MongoDB Atlas connections use the direct MongoDB driver protocol. Cloudflare documents this pattern for low-traffic use; each cold invocation may pay additional connection latency. [MongoDB on Workers](https://developers.cloudflare.com/workers/databases/third-party-integrations/mongodb/)
-- Pages Functions use a Service binding to call the API Worker. [Pages bindings](https://developers.cloudflare.com/pages/functions/bindings/)
+- Worker secrets are declared as required in `backend/wrangler.jsonc`; Wrangler will report missing secrets during deployment.
+- Worker variables such as cookie and upload limits are kept in `backend/wrangler.jsonc`. `CLIENT_ORIGIN` is supplied by the deployment script.
+- Resume PDFs are stored in MongoDB Atlas. The 5 MB application upload limit applies, and Atlas storage capacity should be monitored.
+- The Worker uses `httpServerHandler` and Node.js compatibility to run the Express app. MongoDB Atlas connections can add latency on cold starts. See [Express on Workers](https://developers.cloudflare.com/workers/tutorials/deploy-an-express-app/) and [MongoDB on Workers](https://developers.cloudflare.com/workers/databases/third-party-integrations/mongodb/).
+- Pages service bindings are described in Cloudflare's [Pages bindings guide](https://developers.cloudflare.com/pages/functions/bindings/). The dashboard drag-and-drop upload does not compile Functions; use Wrangler or Git integration.
+- Atlas direct connections from Workers may require allowing Cloudflare egress in Atlas Network Access. If using `0.0.0.0/0`, protect the database with a dedicated least-privilege user and a strong password.

@@ -26,10 +26,13 @@ for (const name of runtimeVariableNames) {
 
 process.env.VERALYX_RUNTIME = 'cloudflare-worker';
 
-const [{ createApp }, { connectDB }] = await Promise.all([
+const [{ createApp }, { connectDB }, { setCloudflareRateLimitBindings }] = await Promise.all([
   import('./app.js'),
   import('./config/db.js'),
+  import('./middleware/rateLimits.js'),
 ]);
+
+setCloudflareRateLimitBindings(workerEnv);
 
 const connectDatabase = async (_req, _res, next) => {
   try {

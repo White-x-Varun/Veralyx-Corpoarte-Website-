@@ -20,6 +20,7 @@ blob-report/
 *.tsbuildinfo
 .wrangler/
 .dev.vars
+.cloudflare.secrets
 .mongo-memory/
 .cache/
 .npm-cache/

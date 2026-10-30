@@ -22,7 +22,11 @@
     "start": "npm run start -w backend"
   },
   "devDependencies": {
-    "concurrently": "^9.1.2"
+    "concurrently": "^9.1.2",
+    "wrangler": "^4.156.0"
+  },
+  "overrides": {
+    "iconv-lite": "^0.6.3"
   },
   "engines": {
     "node": ">=20"

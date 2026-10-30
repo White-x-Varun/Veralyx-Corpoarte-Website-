@@ -10,17 +10,36 @@ function validateCloudflareBuild(env) {
     throw new Error('Cloudflare Pages builds require VITE_API_BASE_URL and VITE_SITE_URL.');
   }
 
-  let apiUrl;
   let publicSiteUrl;
   try {
-    apiUrl = new URL(apiBaseUrl);
     publicSiteUrl = new URL(siteUrl);
   } catch {
-    throw new Error('VITE_API_BASE_URL and VITE_SITE_URL must be valid absolute URLs.');
+    throw new Error('VITE_SITE_URL must be a valid absolute HTTPS URL.');
   }
 
-  if (apiUrl.protocol !== 'https:' || publicSiteUrl.protocol !== 'https:') {
-    throw new Error('Cloudflare Pages API and site URLs must use HTTPS.');
+  if (publicSiteUrl.protocol !== 'https:') {
+    throw new Error('Cloudflare Pages site URL must use HTTPS.');
+  }
+  if (publicSiteUrl.hostname === 'localhost' || publicSiteUrl.hostname === '127.0.0.1') {
+    throw new Error('VITE_SITE_URL cannot point to localhost on Cloudflare Pages.');
+  }
+
+  // Same-origin API requests are routed by the Pages Function service binding.
+  if (apiBaseUrl.startsWith('/')) {
+    if (apiBaseUrl.replace(/\/+$/, '') !== '/api/v1') {
+      throw new Error('A relative VITE_API_BASE_URL must be /api/v1.');
+    }
+    return;
+  }
+
+  let apiUrl;
+  try {
+    apiUrl = new URL(apiBaseUrl);
+  } catch {
+    throw new Error('VITE_API_BASE_URL must be /api/v1 or a valid absolute HTTPS URL.');
+  }
+  if (apiUrl.protocol !== 'https:') {
+    throw new Error('Cloudflare Pages API URL must use HTTPS.');
   }
   if (apiUrl.hostname === 'localhost' || apiUrl.hostname === '127.0.0.1') {
     throw new Error('VITE_API_BASE_URL cannot point to localhost on Cloudflare Pages.');

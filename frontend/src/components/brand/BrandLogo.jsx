@@ -10,13 +10,13 @@ export default function BrandLogo({ compact = false, className }) {
       aria-label={`${BRAND.name} — Authentic Strategies, Brilliant Outcomes`}
     >
       <img
-        src="/veralyx-logo.svg"
+        src="/brand/veralyx-header.png"
         alt=""
         aria-hidden="true"
-        className="h-auto"
-        style={{ width: compact ? '150px' : 'clamp(170px, 14vw, 200px)' }}
-        width="500"
-        height="190"
+        className="h-auto brightness-0 invert"
+        style={{ width: compact ? '120px' : 'clamp(125px, 12vw, 140px)' }}
+        width="840"
+        height="460"
       />
     </Link>
   );

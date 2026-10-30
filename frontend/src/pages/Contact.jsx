@@ -2,7 +2,7 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Mail, MapPin, Phone, MessageCircle } from 'lucide-react';
+import { ArrowUpRight, CreditCard, Mail, MapPin, Phone, MessageCircle } from 'lucide-react';
 import Seo from '@/components/Seo';
 import { useSettings } from '@/context/SettingsContext';
 import { useToast } from '@/context/ToastContext';
@@ -68,7 +68,7 @@ export default function Contact() {
       <PageHero
         eyebrow={BRAND.name}
         title="Contact us"
-        subtitle={`For digital marketing consulting, business consulting, or life coaching enquiries, email ${email} or connect on WhatsApp.`}
+        subtitle={`For digital marketing, PR management, social media, business consulting, or life coaching enquiries, email ${email} or call ${settings.phone || BRAND.phone}.`}
       />
 
       <section className="section-padding bg-surface/20">
@@ -77,7 +77,7 @@ export default function Contact() {
             <div className="mb-7">
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-light">Talk to Veralyx</p>
               <h2 className="mt-3 font-display text-2xl font-semibold text-white">Let&apos;s discuss your next step</h2>
-              <p className="mt-3 text-sm leading-relaxed text-muted">Tell us whether you&apos;re exploring consulting or coaching, and we&apos;ll respond about an appropriate next step.</p>
+              <p className="mt-3 text-sm leading-relaxed text-muted">Tell us which service you&apos;re interested in, and we&apos;ll respond about an appropriate next step.</p>
             </div>
             <Card className="border-white/[0.07] bg-surface-elevated/45 transition hover:border-brand/30">
               <CardContent className="flex items-start gap-4 pt-6">
@@ -122,6 +122,18 @@ export default function Contact() {
                 </CardContent>
               </Card>
             )}
+            <Card className="border-white/[0.07] bg-surface-elevated/45 transition hover:border-brand/30">
+              <CardContent className="flex items-start gap-4 pt-6">
+                <CreditCard className="mt-1 h-5 w-5 shrink-0 text-brand" aria-hidden="true" />
+                <div>
+                  <h3 className="font-medium text-white">Pay online</h3>
+                  <p className="mt-1 text-sm text-muted">Pay through the Razorpay page for Vibgyor Horizons Private Limited (Veralyx). Confirm the amount with us before paying.</p>
+                  <a href={BRAND.paymentUrl} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-brand-light hover:text-white">
+                    Pay Veralyx via Razorpay <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                  </a>
+                </div>
+              </CardContent>
+            </Card>
             {!isPlaceholderValue(settings.address) && (
               <Card className="border-white/[0.07] bg-surface-elevated/45 transition hover:border-brand/30">
                 <CardContent className="flex items-start gap-4 pt-6">
@@ -180,6 +192,8 @@ export default function Contact() {
                     <Select label="Inquiry type" {...register('inquiryType')}>
                       <option value="general">General inquiry</option>
                       <option value="digital-marketing-consulting">Digital marketing consulting</option>
+                      <option value="pr-management">PR management</option>
+                      <option value="social-media">Social media</option>
                       <option value="business-consulting">Business consulting</option>
                       <option value="life-coaching">Life coaching</option>
                       <option value="project">Project discussion</option>

@@ -8,7 +8,7 @@ const DEFAULT_SETTINGS = {
   tagline: BRAND.tagline,
   description: BRAND.description,
   email: BRAND.email,
-  phone: '',
+  phone: BRAND.phone,
   address: '',
   whatsappNumber: '',
   socialLinks: {
@@ -43,6 +43,7 @@ export function SettingsProvider({ children }) {
           setSettings({
             ...DEFAULT_SETTINGS,
             ...payload,
+            phone: payload?.phone || DEFAULT_SETTINGS.phone,
             companyName,
             socialLinks: Object.fromEntries(
               Object.keys(DEFAULT_SETTINGS.socialLinks).map((key) => [

@@ -5,7 +5,7 @@ import { BRAND } from '@/content/brand';
 
 export default function CtaBand({
   title = `Work with ${BRAND.name}`,
-  body = 'Explore digital marketing consulting, business consulting, or life coaching with Veralyx.',
+  body = 'Explore digital marketing, PR management, social media, business consulting, and life coaching with Veralyx.',
   primaryTo = '/contact',
   primaryLabel = 'Start a conversation',
   secondaryTo,

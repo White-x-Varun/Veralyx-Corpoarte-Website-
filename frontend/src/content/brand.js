@@ -1,8 +1,11 @@
 ﻿export const BRAND = {
   name: 'Veralyx',
-  legalEntity: 'Vibgyor Horizons Private Limited',
-  legalLine: 'Veralyx is a brand of and is operated by Vibgyor Horizons Private Limited.',
+  legalEntity: 'Veralyx',
+  operator: 'Vibgyor Horizons Private Limited',
+  legalLine: 'Veralyx is the legal name and is owned, operated, and marketed by Vibgyor Horizons Private Limited.',
   email: 'veralyx91@gmail.com',
+  phone: '9627665099',
+  paymentUrl: 'https://razorpay.me/@vibgyorhorizonsprivatelimited',
   founderLinkedInUrl: 'https://www.linkedin.com/in/rahulgoel091/',
   companyLinkedInUrl: '',
   companyLinkedInEmbedUrl: '',
@@ -12,9 +15,9 @@
     facebook: 'https://facebook.com/share/1A7RsE9BcE',
     youtube: 'https://m.youtube.com/@Veralyx91',
   },
-  tagline: 'Digital marketing consulting, business consulting, and life coaching.',
+  tagline: 'Digital marketing, PR management, social media, business consulting, and life coaching.',
   description:
-    'Veralyx offers digital marketing consulting and business consulting for organizations, and life coaching for individuals.',
+    'Veralyx offers digital marketing, PR management, and social media services, alongside business consulting and life coaching.',
   heroTitle: 'Build with clarity.',
   heroSubtitle: 'Consulting for businesses. Coaching for individuals.',
   mission:
@@ -38,6 +41,13 @@ export const FOUNDER_STATS = [
   { target: 9000, value: '9K+', label: 'Founder’s LinkedIn and YouTube audience', suffix: '+', compact: true },
   { target: 20, value: '₹20L+', label: 'Monthly ad budgets optimized by the founder', prefix: '₹', suffix: 'L+' },
   { target: 7, value: '₹7+ Cr', label: 'Revenue contribution from the founder’s work', prefix: '₹', suffix: '+ Cr' },
+];
+
+export const FOUNDER_ORGANIZATIONS = [
+  { name: 'ClearKaya', work: 'Recruitment support' },
+  { name: 'Zyrixcart', work: 'Marketing and strategy support', logo: '/brand/zyrixcart.png' },
+  { name: 'WerpIndia' },
+  { name: 'CSII India' },
 ];
 
 export const INDUSTRIES = [
@@ -65,14 +75,40 @@ export const SERVICES = [
   {
     slug: 'digital-marketing-consulting',
     icon: 'chart',
-    title: 'Digital Marketing Consulting',
-    description: 'Practical marketing strategy and channel guidance shaped around business goals.',
+    title: 'Digital Marketing',
+    description: 'Practical digital marketing strategy and channel guidance shaped around business goals.',
     content:
       'Veralyx advises organizations on digital marketing priorities, Go-to-Market planning, demand generation, and customer acquisition. The scope is agreed around each client’s goals and resources.',
     features: [
       'Go-to-Market planning',
       'Demand generation and customer acquisition',
       'SEO, paid media, positioning, and conversion guidance',
+    ],
+  },
+  {
+    slug: 'pr-management',
+    icon: 'megaphone',
+    title: 'PR Management',
+    description: 'Plan communications and media outreach that support your brand reputation and business goals.',
+    content:
+      'Veralyx supports communications planning, public relations priorities, and media outreach shaped around each organization’s audience, positioning, and goals.',
+    features: [
+      'PR and communications planning',
+      'Media outreach strategy',
+      'Brand reputation and message alignment',
+    ],
+  },
+  {
+    slug: 'social-media',
+    icon: 'share',
+    title: 'Social Media',
+    description: 'Build a focused social media presence with clear content and channel priorities.',
+    content:
+      'Veralyx helps organizations set social media priorities, shape content direction, and align channel activity with their wider marketing goals.',
+    features: [
+      'Social media strategy and channel selection',
+      'Content themes and publishing direction',
+      'Audience engagement and performance review',
     ],
   },
   {

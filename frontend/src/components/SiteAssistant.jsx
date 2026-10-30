@@ -18,7 +18,7 @@ const SEARCH_ITEMS = [
   },
   {
     title: 'Contact Veralyx',
-    description: 'Get in touch about digital marketing consulting, business consulting, or life coaching.',
+    description: 'Get in touch about digital marketing, PR management, social media, business consulting, or life coaching.',
     to: '/contact',
     keywords: 'contact email enquiry consultation coaching phone whatsapp',
   },

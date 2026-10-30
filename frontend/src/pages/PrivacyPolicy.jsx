@@ -20,7 +20,7 @@ export default function PrivacyPolicy() {
       <section className="section-padding pt-0">
         <div className="container-app max-w-3xl prose-content">
           <p>
-            This website is for the Veralyx brand and is operated by Vibgyor Horizons Private Limited
+            This website is operated under the legal name Veralyx, which is owned, operated, and marketed by Vibgyor Horizons Private Limited
             (&ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;). We respect your privacy and are committed to protecting
             your personal data. This policy describes how we collect, use, and safeguard information when you visit our website
             or interact with our services.
@@ -52,6 +52,11 @@ export default function PrivacyPolicy() {
             in operating our website, subject to confidentiality agreements.
           </p>
 
+          <h2>Online payments</h2>
+          <p>
+            Payments started through our Razorpay link are processed on Razorpay’s hosted service. Payment details are provided directly to Razorpay and are handled under its privacy practices; this website does not collect card or UPI credentials through its payment link.
+          </p>
+
           <h2>Data retention</h2>
           <p>
             We retain personal data only as long as necessary for the purposes outlined in this policy or as required by law.
@@ -70,7 +75,7 @@ export default function PrivacyPolicy() {
 
           <h2>Contact</h2>
           <p>
-            For privacy-related questions, contact us at {email} or through our contact page.
+            For privacy-related questions, contact us at {email}, by phone at 9627665099, or through our contact page.
           </p>
         </div>
       </section>

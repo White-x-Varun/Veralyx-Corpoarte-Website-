@@ -1,7 +1,6 @@
 ﻿import { Link } from 'react-router-dom';
-import { Mail, MapPin, Phone } from 'lucide-react';
+import { ArrowUpRight, CreditCard, Mail, MapPin, Phone } from 'lucide-react';
 import { useSettings } from '@/context/SettingsContext';
-import BrandLogo from '@/components/brand/BrandLogo';
 import SpectrumBar from '@/components/brand/SpectrumBar';
 import { BRAND, isPlaceholderValue, resolveEmail } from '@/content/brand';
 
@@ -33,7 +32,9 @@ export default function Footer() {
       <div className="container-app section-padding pb-8">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
-            <BrandLogo />
+            <div className="mb-4 w-44 rounded-xl bg-white p-3">
+              <img src="/brand/veralyx.png" alt="Veralyx — Authentic Strategies, Brilliant Outcomes" className="h-28 w-full object-contain" loading="lazy" />
+            </div>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted">
               {BRAND.description}
             </p>
@@ -60,7 +61,7 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="mt-12 grid gap-4 border-t border-surface-border pt-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-4 border-t border-surface-border pt-8 sm:grid-cols-2 lg:grid-cols-4">
           <a href={`mailto:${email}`} className="flex items-start gap-2 text-sm text-muted hover:text-white">
             <Mail className="mt-0.5 h-4 w-4 shrink-0 text-brand-light" aria-hidden="true" />
             {email}
@@ -77,13 +78,20 @@ export default function Footer() {
               {settings.address}
             </p>
           )}
+          <a href={BRAND.paymentUrl} target="_blank" rel="noopener noreferrer" className="flex items-start gap-2 text-sm text-muted hover:text-white">
+            <CreditCard className="mt-0.5 h-4 w-4 shrink-0 text-brand-light" aria-hidden="true" />
+            Pay Veralyx via Razorpay <ArrowUpRight className="h-4 w-4 shrink-0 text-brand-light" aria-hidden="true" />
+          </a>
         </div>
 
-        <div className="mt-8 space-y-2 border-t border-surface-border pt-6">
-          <p className="text-sm text-muted">
-            &copy; {year} {BRAND.name}. All rights reserved.
-          </p>
-          <p className="text-sm text-muted">{BRAND.legalLine}</p>
+        <div className="mt-8 flex flex-col gap-5 border-t border-surface-border pt-6 sm:flex-row sm:items-center sm:justify-between">
+          <div className="space-y-2">
+            <p className="text-sm text-muted">
+              &copy; {year} {BRAND.name}. All rights reserved.
+            </p>
+            <p className="text-sm text-muted">{BRAND.legalLine}</p>
+          </div>
+          <img src="/brand/vibgyor-horizons.png" alt="Vibgyor Horizons Private Limited" className="h-36 w-44 rounded-lg bg-white p-2 object-contain" loading="lazy" />
         </div>
       </div>
     </footer>

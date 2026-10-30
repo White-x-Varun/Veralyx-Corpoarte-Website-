@@ -65,7 +65,7 @@ export default function Settings() {
             <Input label="Tagline" {...register('tagline')} />
             <Textarea label="Description" rows={3} {...register('description')} />
             <p className="text-xs text-muted">
-              Legal entity shown in the footer: Vibgyor Horizons Private Limited.
+              Veralyx is owned, operated, and marketed by Vibgyor Horizons Private Limited.
             </p>
           </CardContent>
         </Card>

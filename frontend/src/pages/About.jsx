@@ -5,7 +5,7 @@ import { Card, CardContent } from '@/components/ui/Card';
 import PageHero from '@/components/brand/PageHero';
 import ImpactStats from '@/components/brand/ImpactStats';
 import CtaBand from '@/components/brand/CtaBand';
-import { BRAND, EXPERTISE, INDUSTRIES } from '@/content/brand';
+import { BRAND, EXPERTISE, FOUNDER_ORGANIZATIONS, INDUSTRIES } from '@/content/brand';
 
 const VALUES = [
   {
@@ -61,6 +61,32 @@ export default function About() {
               <p className="mt-4 leading-relaxed text-muted">{BRAND.vision}</p>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="section-padding bg-surface/20" aria-labelledby="founder-organizations-title">
+        <div className="container-app">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-light">Founder experience</p>
+          <h2 id="founder-organizations-title" className="mt-3 font-display text-3xl font-bold text-white">Organizations in the founder’s professional journey</h2>
+          <p className="mt-3 max-w-3xl leading-relaxed text-muted">
+            These names reflect Rahul Goel’s prior professional experience, including full-time roles, internships, and client work. They are not endorsements or a claim that each organization is a current Veralyx client.
+          </p>
+          <ul className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {FOUNDER_ORGANIZATIONS.map(({ name, work, logo }) => (
+              <li key={name} className="rounded-xl border border-white/10 bg-white/[0.03] p-5">
+                {logo && (
+                  <img
+                    src={logo}
+                    alt={`${name} logo`}
+                    className="mb-4 h-28 w-full rounded-lg bg-black object-contain"
+                    loading="lazy"
+                  />
+                )}
+                <h3 className="font-medium text-white">{name}</h3>
+                {work && <p className="mt-2 text-sm text-muted">{work}</p>}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 

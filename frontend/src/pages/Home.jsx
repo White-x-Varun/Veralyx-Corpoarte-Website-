@@ -31,7 +31,7 @@ import FaqSection from '@/components/brand/FaqSection';
 import MarketingNews from '@/components/brand/MarketingNews';
 import NewsletterSignup from '@/components/brand/NewsletterSignup';
 import LinkedInPostSection from '@/components/brand/LinkedInPostSection';
-import { BRAND, EXPERTISE, INDUSTRIES, SERVICES } from '@/content/brand';
+import { BRAND, EXPERTISE, FOUNDER_ORGANIZATIONS, INDUSTRIES, SERVICES } from '@/content/brand';
 
 const SERVICE_ICONS = {
   target: Target,
@@ -128,7 +128,7 @@ export default function Home() {
               </h1>
               <p className="hero-lede">{BRAND.heroSubtitle}</p>
               <p className="hero-description">
-                Veralyx offers digital marketing consulting and business consulting for organizations, and life coaching for individuals.
+                {BRAND.description}
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Link
@@ -175,10 +175,10 @@ export default function Home() {
       <section className="section-padding bg-surface/20" aria-labelledby="clientele-title">
         <div className="container-app">
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-light">Veralyx clientele</p>
-          <h2 id="clientele-title" className="mt-3 font-display text-3xl font-bold text-white">Organizations connected to the founder’s experience</h2>
-          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted">These names reflect the founder’s prior client experience and are not presented as current Veralyx engagements or endorsements.</p>
-          <ul className="mt-7 flex flex-wrap gap-3" aria-label="Founder’s prior client experience">
-            {['ClearKaya', 'Zyrixcart', 'WerpIndia', 'CSII India'].map((name) => <li key={name} className="rounded-full border border-white/10 bg-white/[0.03] px-5 py-3 text-sm font-medium text-slate-200">{name}</li>)}
+          <h2 id="clientele-title" className="mt-3 font-display text-3xl font-bold text-white">Organizations in the founder’s professional journey</h2>
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted">These names reflect Rahul Goel’s prior professional experience, including full-time roles, internships, and client work. They are not endorsements or a claim that each organization is a current Veralyx client.</p>
+          <ul className="mt-7 flex flex-wrap gap-3" aria-label="Organizations in the founder’s professional journey">
+            {FOUNDER_ORGANIZATIONS.map(({ name }) => <li key={name} className="rounded-full border border-white/10 bg-white/[0.03] px-5 py-3 text-sm font-medium text-slate-200">{name}</li>)}
           </ul>
         </div>
       </section>
@@ -200,7 +200,7 @@ export default function Home() {
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-light">What we do</p>
               <h2 className="mt-3 font-display text-3xl font-bold text-white sm:text-4xl">Consulting for businesses. Coaching for individuals.</h2>
-              <p className="mt-3 max-w-xl text-muted">Three focused offers, shaped around the goals of each engagement.</p>
+              <p className="mt-3 max-w-xl text-muted">Focused services, shaped around the goals of each engagement.</p>
             </div>
             <Link to="/services" className="link-underline text-sm font-medium">Explore all services <span aria-hidden="true">→</span></Link>
           </div>
@@ -382,7 +382,7 @@ export default function Home() {
 
       <CtaBand
         title={`Work with ${BRAND.name}`}
-        body="Explore digital marketing consulting, business consulting, or life coaching with Veralyx."
+        body="Explore digital marketing, PR management, social media, business consulting, and life coaching with Veralyx."
         primaryTo="/contact"
         primaryLabel="Start a conversation"
         secondaryTo="/services"

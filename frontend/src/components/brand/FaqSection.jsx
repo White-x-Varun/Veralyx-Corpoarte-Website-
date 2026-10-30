@@ -3,7 +3,7 @@
 const FAQS = [
   {
     question: 'What does Veralyx offer?',
-    answer: 'Veralyx offers digital marketing consulting and business consulting for organizations, alongside life coaching for individuals.',
+    answer: 'Veralyx offers digital marketing, PR management, and social media services, alongside business consulting and life coaching.',
   },
   {
     question: 'Can Veralyx help with both strategy and implementation?',
@@ -19,7 +19,7 @@ const FAQS = [
   },
   {
     question: 'How do I enquire about working with Veralyx?',
-    answer: 'Use the contact page to share whether you are interested in digital marketing consulting, business consulting, or life coaching. Veralyx can then discuss a suitable next step.',
+    answer: 'Use the contact page to share whether you are interested in digital marketing, PR management, social media, business consulting, or life coaching. Veralyx can then discuss a suitable next step.',
   },
   {
     question: 'Where can I find current job openings?',

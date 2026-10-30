@@ -13,11 +13,11 @@ const siteSettingsSchema = new mongoose.Schema(
   {
     companyName: { type: String, default: 'Veralyx', trim: true },
     logoUrl: { type: String, default: '' },
-    tagline: { type: String, default: 'Go-to-Market strategy, demand generation, and customer acquisition.' },
+    tagline: { type: String, default: 'Digital marketing, PR management, social media, business consulting, and life coaching.' },
     description: {
       type: String,
       default:
-        'Veralyx partners with founders and leadership teams to build focused Go-to-Market, demand generation, and customer acquisition systems that support measurable business outcomes.',
+        'Veralyx offers digital marketing, PR management, and social media services, alongside business consulting and life coaching.',
     },
     heroTitle: { type: String, default: 'Marketing is an investment.' },
     heroSubtitle: {
@@ -49,7 +49,7 @@ const siteSettingsSchema = new mongoose.Schema(
       },
     ],
     email: { type: String, default: 'veralyx91@gmail.com', trim: true },
-    phone: { type: String, default: '', trim: true },
+    phone: { type: String, default: '9627665099', trim: true },
     address: { type: String, default: '' },
     whatsappNumber: { type: String, default: '' },
     whatsappPrefill: {
@@ -79,43 +79,38 @@ const siteSettingsSchema = new mongoose.Schema(
 
 const DEFAULT_SERVICES = [
   {
-    title: 'Go-to-Market Strategy',
-    description: 'Focused market, audience, positioning, and channel choices tied to business goals.',
+    title: 'Digital Marketing',
+    description: 'Digital marketing strategy and channel guidance shaped around business goals.',
+    icon: 'chart',
+  },
+  {
+    title: 'PR Management',
+    description: 'Communications planning and media outreach aligned with your brand and business goals.',
     icon: 'megaphone',
   },
   {
-    title: 'Demand Generation',
-    description: 'Build campaigns and journeys that create qualified opportunities.',
-    icon: 'sparkles',
+    title: 'Social Media',
+    description: 'Social media strategy, content direction, and audience engagement.',
+    icon: 'share',
   },
   {
-    title: 'Performance Marketing',
-    description: 'Optimize paid media investment around efficient customer acquisition.',
-    icon: 'megaphone',
+    title: 'Business Consulting',
+    description: 'Clarify priorities, assess opportunities, and plan practical next steps.',
+    icon: 'handshake',
   },
   {
-    title: 'SEO, SEM & Paid Media',
-    description: 'Improve discoverability and capture high-intent demand across search and paid channels.',
-    icon: 'sparkles',
-  },
-  {
-    title: 'CRO & Brand Positioning',
-    description: 'Make the value clear and improve the path from interest to conversion.',
-    icon: 'sparkles',
-  },
-  {
-    title: 'Marketing and sales in sync',
-    description: 'Bring both teams together around shared priorities, clear handoffs, and a smoother path to customer acquisition.',
-    icon: 'megaphone',
+    title: 'Life Coaching',
+    description: 'One-to-one coaching for personal clarity, goal-setting, and follow-through.',
+    icon: 'circle',
   },
 ];
 
 const DEFAULT_SETTINGS = {
   companyName: 'Veralyx',
   logoUrl: '',
-  tagline: 'Go-to-Market strategy, demand generation, and customer acquisition.',
+  tagline: 'Digital marketing, PR management, social media, business consulting, and life coaching.',
   description:
-    'Veralyx partners with founders and leadership teams to build focused Go-to-Market, demand generation, and customer acquisition systems that support measurable business outcomes.',
+    'Veralyx offers digital marketing, PR management, and social media services, alongside business consulting and life coaching.',
   heroTitle: 'Marketing is an investment.',
   heroSubtitle: 'Strategy turns it into commercial value.',
   mission:
@@ -125,7 +120,7 @@ const DEFAULT_SETTINGS = {
   team: [],
   milestones: [],
   email: 'veralyx91@gmail.com',
-  phone: '',
+  phone: '9627665099',
   address: '',
   whatsappNumber: '',
   whatsappPrefill: 'Hello Veralyx, I would like to discuss Go-to-Market and customer acquisition.',

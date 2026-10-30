@@ -1,10 +1,22 @@
 ﻿import { ArrowUpRight, Linkedin } from 'lucide-react';
+import { useSettings } from '@/context/SettingsContext';
 import { BRAND } from '@/content/brand';
+
+const SOCIAL_LABELS = {
+  linkedin: 'LinkedIn',
+  youtube: 'YouTube',
+  instagram: 'Instagram',
+  facebook: 'Facebook',
+  twitter: 'X',
+};
 
 const isValidEmbed = (url) => typeof url === 'string' && url.startsWith('https://www.linkedin.com/embed/feed/update/');
 
 export default function LinkedInPostSection() {
+  const { settings } = useSettings();
   const embedUrl = BRAND.companyLinkedInEmbedUrl;
+  const socialLinks = Object.entries(settings.socialLinks || {})
+    .filter(([key, url]) => SOCIAL_LABELS[key] && typeof url === 'string' && url.startsWith('https://'));
 
   return (
     <section className="section-padding" aria-labelledby="linkedin-post-title">
@@ -31,6 +43,16 @@ export default function LinkedInPostSection() {
           <a href={BRAND.companyLinkedInUrl} target="_blank" rel="noopener noreferrer" className="mx-auto mt-5 inline-flex items-center gap-2 text-sm font-medium text-brand-light hover:text-white">
             Visit Veralyx on LinkedIn<ArrowUpRight className="h-4 w-4" aria-hidden="true" />
           </a>
+        )}
+        {socialLinks.length > 0 && (
+          <nav className="mx-auto mt-7 flex max-w-2xl flex-wrap justify-center gap-3" aria-label="Veralyx social media links">
+            {socialLinks.map(([key, url]) => (
+              <a key={key} href={url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2.5 text-sm font-medium text-slate-200 transition hover:border-brand/40 hover:text-brand-light">
+                {key === 'linkedin' && <Linkedin className="h-4 w-4" aria-hidden="true" />}
+                {SOCIAL_LABELS[key]}<ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+              </a>
+            ))}
+          </nav>
         )}
       </div>
     </section>

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, BarChart3, CircleDot, Handshake, Megaphone, MousePointerClick, Search, Target } from 'lucide-react';
+import { ArrowRight, BarChart3, CircleDot, Handshake, Megaphone, MousePointerClick, Search, Share2, Target } from 'lucide-react';
 import Seo from '@/components/Seo';
 import { useMotionProps } from '@/hooks/useMotionProps';
 import { Card, CardContent } from '@/components/ui/Card';
@@ -16,6 +16,7 @@ const ICON_MAP = {
   cursor: MousePointerClick,
   handshake: Handshake,
   circle: CircleDot,
+  share: Share2,
 };
 
 export default function Services() {
@@ -32,17 +33,17 @@ export default function Services() {
       <PageHero
         eyebrow={BRAND.name}
         title="Consulting for business. Coaching for life."
-        subtitle="Digital marketing consulting and business consulting for organizations, alongside life coaching for individuals."
+        subtitle="Digital marketing, PR management, and social media services, alongside business consulting and life coaching."
       />
 
       <section className="section-padding bg-surface/20">
         <div className="container-app">
           <div className="mb-10 max-w-2xl">
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-light">What Veralyx offers</p>
-            <h2 className="mt-3 font-display text-3xl font-bold text-white">Three focused ways to move forward</h2>
+            <h2 className="mt-3 font-display text-3xl font-bold text-white">Focused services to move forward</h2>
             <p className="mt-3 leading-relaxed text-muted">Business engagements and coaching are scoped around the goals agreed with each client.</p>
           </div>
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {SERVICES.map((service) => {
               const Icon = ICON_MAP[service.icon] || Target;
 
@@ -76,7 +77,7 @@ export default function Services() {
 
       <CtaBand
         title="Find the right next step"
-        body="Talk with Veralyx about digital marketing consulting, business consulting, or life coaching."
+        body="Talk with Veralyx about digital marketing, PR management, social media, business consulting, or life coaching."
       />
     </>
   );

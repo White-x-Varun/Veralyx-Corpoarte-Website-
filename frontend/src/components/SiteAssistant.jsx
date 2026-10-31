@@ -12,7 +12,7 @@ const SEARCH_ITEMS = [
   })),
   {
     title: 'About Veralyx',
-    description: `${BRAND.description} Learn about the founder’s experience, approach, and areas of expertise.`,
+    description: `${BRAND.description} Learn about the founderâ€™s experience, approach, and areas of expertise.`,
     to: '/about',
     keywords: 'about founder experience industries approach team',
   },
@@ -42,10 +42,25 @@ const SEARCH_ITEMS = [
   },
 ];
 
-const STOP_WORDS = new Set(['a', 'an', 'and', 'are', 'can', 'do', 'does', 'for', 'how', 'i', 'in', 'is', 'it', 'me', 'of', 'on', 'the', 'to', 'we', 'what', 'with', 'you', 'your']);
+const QUERY_ALIASES = [
+  [/\b(ads?|advertising|seo|sem|marketing|promotion|prachar)\b/g, 'digital marketing'],
+  [/\b(insta|instagram|linkedin|facebook|socials|social media)\b/g, 'social media'],
+  [/\b(pr|public relations|press|media coverage)\b/g, 'pr management'],
+  [/\b(business|startup|founder|company|vyapar|karobaar)\b/g, 'business consulting'],
+  [/\b(coach|coaching|personal growth|life goals|zindagi|jeevan)\b/g, 'life coaching'],
+  [/\b(job|jobs|career|careers|naukri|internship|opening)\b/g, 'careers'],
+  [/\b(contact|email|phone|call|baat|connect|enquiry|enquire)\b/g, 'contact'],
+  [/\b(work|project|projects|portfolio|kaam)\b/g, 'projects'],
+  [/\b(blog|article|articles|insights|ideas)\b/g, 'insights'],
+];
+const STOP_WORDS = new Set(['a', 'an', 'and', 'are', 'can', 'do', 'does', 'for', 'how', 'i', 'in', 'is', 'it', 'ke', 'liye', 'me', 'mujhe', 'of', 'on', 'please', 'the', 'to', 'we', 'what', 'with', 'you', 'your', 'hai', 'ho', 'ka', 'kar', 'karo', 'chahiye', 'dikhao', 'batao']);
+
+function normalizeQuery(query) {
+  return QUERY_ALIASES.reduce((value, [pattern, replacement]) => value.replace(pattern, replacement), query.toLowerCase());
+}
 
 function searchSite(query) {
-  const normalized = query.toLowerCase().trim();
+  const normalized = normalizeQuery(query).trim();
   const words = normalized.split(/[^a-z0-9]+/).filter((word) => word.length > 1 && !STOP_WORDS.has(word));
   if (!words.length) return [];
 
@@ -64,7 +79,7 @@ function searchSite(query) {
 }
 
 function isGreeting(query) {
-  return /^(hi|hello|hey|good morning|good afternoon|good evening)[!. ]*$/i.test(query.trim());
+  return /^(hi|hello|hey|namaste|namaskar|good morning|good afternoon|good evening)[!. ]*$/i.test(query.trim());
 }
 
 export default function SiteAssistant() {
@@ -74,7 +89,7 @@ export default function SiteAssistant() {
     {
       id: 'welcome',
       role: 'assistant',
-      text: `Hi! I can answer common questions and search Veralyx’s website. Try “life coaching” or “business consulting.”`,
+      text: 'Hi! I can help you find Veralyx services and pages. Try â€œadsâ€, â€œnaukriâ€, â€œbusiness consultingâ€, or â€œbaat karni haiâ€.',
     },
   ]);
 
@@ -85,10 +100,10 @@ export default function SiteAssistant() {
 
     const results = searchSite(text);
     const reply = isGreeting(text)
-      ? 'Hello! What would you like to find on the Veralyx website?'
+      ? 'Hello! Namaste! What would you like to find on the Veralyx website?'
       : results.length
-        ? `Here’s a page that may help: ${results[0].description.split('. ')[0]}.`
-        : 'I couldn’t find a match in the Veralyx website content. Try a service, “projects,” “careers,” “insights,” or “contact.”';
+        ? `I found a page that may help: ${results[0].description.split('. ')[0]}.`
+        : 'I couldnâ€™t find a matching page. Try â€œmarketingâ€, â€œcoachingâ€, â€œnaukriâ€, â€œprojectsâ€, or â€œcontactâ€.';
 
     setMessages((current) => [
       ...current,
@@ -114,7 +129,7 @@ export default function SiteAssistant() {
               </span>
               <div>
                 <h2 className="text-sm font-semibold text-white">Veralyx assistant</h2>
-                <p className="text-xs text-muted">Answers and website search</p>
+                <p className="text-xs text-muted">Find services and pages</p>
               </div>
             </div>
             <button
@@ -177,7 +192,18 @@ export default function SiteAssistant() {
                 <Send className="h-4 w-4" aria-hidden="true" />
               </button>
             </div>
-            <p className="mt-2 px-1 text-[11px] text-muted">Search covers Veralyx pages and services.</p>
+            <div className="mt-2 flex flex-wrap gap-1.5 px-1" aria-label="Suggested searches">
+              {['Marketing', 'Coaching', 'Naukri', 'Contact'].map((suggestion) => (
+                <button
+                  key={suggestion}
+                  type="button"
+                  onClick={() => setQuery(suggestion)}
+                  className="rounded-full border border-surface-border px-2.5 py-1 text-[11px] text-muted transition hover:border-brand/50 hover:text-white"
+                >
+                  {suggestion}
+                </button>
+              ))}
+            </div>
           </form>
         </section>
       )}

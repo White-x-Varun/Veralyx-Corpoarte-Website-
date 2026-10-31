@@ -15,10 +15,6 @@ const FOOTER_LINKS = {
     { to: '/contact', label: 'Contact' },
     { to: '/careers', label: 'Careers' },
   ],
-  Legal: [
-    { to: '/privacy-policy', label: 'Privacy Policy' },
-    { to: '/terms', label: 'Terms of Service' },
-  ],
 };
 
 export default function Footer() {
@@ -91,7 +87,6 @@ export default function Footer() {
             </p>
             <p className="text-sm text-muted">{BRAND.legalLine}</p>
           </div>
-          <img src="/brand/vibgyor-horizons.png" alt="Vibgyor Horizons Private Limited" className="h-36 w-44 rounded-lg bg-white p-2 object-contain" loading="lazy" />
         </div>
       </div>
     </footer>
